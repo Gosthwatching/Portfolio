@@ -1,25 +1,10 @@
-const pool = require('../db/connection');
+// src/repositories/projects.js
+const Project = require('../models/Project');
 
-async function all() {
-  const [rows] = await pool.query('SELECT * FROM projects');
-  return rows;
-}
+async function getAll() { return Project.find().sort({ createdAt: -1 }); }
+async function getById(id) { return Project.findById(id); }
+async function create(data) { return Project.create(data); }
+async function update(id, data) { return Project.findByIdAndUpdate(id, data, { new: true }); }
+async function remove(id) { return Project.findByIdAndDelete(id); }
 
-async function one(id) {
-  const [rows] = await pool.query('SELECT * FROM projects WHERE id=?', [id]);
-  return rows[0];
-}
-
-async function create(data) {
-  const [result] = await pool.query(
-    'INSERT INTO projects (title, short_description, long_description, link) VALUES (?,?,?,?)',
-    [data.title, data.short_description, data.long_description, data.link]
-  );
-  return { id: result.insertId };
-}
-
-async function remove(id) {
-  await pool.query('DELETE FROM projects WHERE id=?', [id]);
-}
-
-module.exports = { all, one, create, remove };
+module.exports = { getAll, getById, create, update, remove };

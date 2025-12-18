@@ -1,16 +1,12 @@
-const pool = require('../db/connection');
+// src/repositories/messages.js
+const Message = require('../models/Message');
 
-async function create(data) {
-  const [result] = await pool.query(
-    'INSERT INTO messages (sender_name, sender_email, subject, body) VALUES (?,?,?,?)',
-    [data.sender_name, data.sender_email, data.subject, data.body]
-  );
-  return { id: result.insertId };
+async function getAll() { return Message.find().sort({ createdAt: -1 }); }
+async function getById(id) { return Message.findById(id); }
+async function create(data) { return Message.create(data); }
+async function markRead(id, read = true) {
+  return Message.findByIdAndUpdate(id, { read }, { new: true });
 }
+async function remove(id) { return Message.findByIdAndDelete(id); }
 
-async function all() {
-  const [rows] = await pool.query('SELECT * FROM messages ORDER BY received_at DESC');
-  return rows;
-}
-
-module.exports = { create, all };
+module.exports = { getAll, getById, create, markRead, remove };

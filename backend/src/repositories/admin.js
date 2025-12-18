@@ -1,8 +1,12 @@
-const pool = require('../db/connection');
+// src/repositories/admin.js
+const Admin = require('../models/Admin');
 
 async function findByUsername(username) {
-  const [rows] = await pool.execute('SELECT * FROM admin WHERE username = ? LIMIT 1', [username]);
-  return rows[0] || null;
+  return Admin.findOne({ username });
 }
 
-module.exports = { findByUsername };
+async function createAdmin(username, password_hash) {
+  return Admin.create({ username, password_hash });
+}
+
+module.exports = { findByUsername, createAdmin };

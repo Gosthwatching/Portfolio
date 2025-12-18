@@ -1,23 +1,40 @@
 const repo = require('../repositories/skills');
 
 async function list(req, res) {
-  res.json(await repo.all());
+  try {
+    const items = await repo.getAll();
+    res.json(items);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 }
 
 async function get(req, res) {
-  const skill = await repo.one(req.params.id);
-  if (!skill) return res.status(404).json({ message: 'Not found' });
-  res.json(skill);
+  try {
+    const item = await repo.getById(req.params.id);
+    if (!item) return res.status(404).json({ message: 'Not found' });
+    res.json(item);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 }
 
 async function create(req, res) {
-  const result = await repo.create(req.body);
-  res.status(201).json(result);
+  try {
+    const result = await repo.create(req.body);
+    res.status(201).json(result);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 }
 
 async function remove(req, res) {
-  await repo.remove(req.params.id);
-  res.json({ message: 'Deleted' });
+  try {
+    await repo.remove(req.params.id);
+    res.json({ message: 'Deleted' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 }
 
 module.exports = { list, get, create, remove };

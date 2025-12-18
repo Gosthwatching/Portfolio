@@ -1,31 +1,33 @@
+// src/app.js
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const connectDB = require('./db/connection');
 
-const authRoutes = require('./routes/auth');
-const projectsRoutes = require('./routes/projects');
-const messagesRoutes = require('./routes/messages');
-const educationRoutes = require('./routes/education');
-const experiencesRoutes = require('./routes/experiences');
-const skillsRoutes = require('./routes/skills');
-
+// Connexion à MongoDB
+connectDB();
 
 const app = express();
+
+// Middlewares
 app.use(cors());
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 
-app.use('/api/auth', authRoutes);
-app.use('/api/projects', projectsRoutes);
-app.use('/api/messages', messagesRoutes);
-app.use('/api/education', educationRoutes);
-app.use('/api/experiences', experiencesRoutes);
-app.use('/api/skills', skillsRoutes);
+// Routes
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/projects', require('./routes/projects'));
+app.use('/api/messages', require('./routes/messages'));
+app.use('/api/education', require('./routes/education'));
+app.use('/api/experiences', require('./routes/experiences'));
+app.use('/api/skills', require('./routes/skills'));
 
-
-const PORT = process.env.PORT || 4000;
+// Route de test
 app.get('/api/test', (req, res) => {
   res.json({ message: 'API OK' });
 });
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+// Lancement du serveur
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));

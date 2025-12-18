@@ -6,6 +6,7 @@ function auth(req, res, next) {
   try {
     const token = header.split(' ')[1];
     req.admin = jwt.verify(token, process.env.JWT_SECRET);
+    if (!req.admin) return res.status(401).json({ message: 'Invalid token' });
     next();
   } catch {
     res.status(401).json({ message: 'Invalid token' });
