@@ -16,31 +16,20 @@ export const PORTFOLIO_INFO: Portfolio = {
       "Senior Engineer with 7+ years of experience delivering enterprise-grade applications. Over the last 3 years I have focused on building production systems using Python (FastAPI) and React — designing APIs, building responsive frontends, and automating deployments with IaC. Experienced across AWS & Azure and comfortable owning full delivery from design to production.",
     contact: {
       email: "yarno.chedemail@3wacademy.fr",
-      phone: "+91 9937 446 070",
+      phone: "+33 06 27 86 69 44",
       location: "France, Paris",
-      website: "https://satya00089.github.io/portfolio",
+      website: "",
       socials: [
         {
           label: "LinkedIn",
-          url: "https://www.linkedin.com/in/satya-subudhi/",
+          url: "https://www.linkedin.com/in/yarnochedemail/",
           icon: "SiLinkedin",
         },
         {
           label: "GitHub",
-          url: "https://github.com/satya00089",
+          url: "https://github.com/Gosthwatching",
           icon: "SiGithub",
-        },
-        {
-          label: "Hugging Face",
-          url: "https://huggingface.co/spaces/satya00089/",
-          icon: "SiHuggingface",
-        },
-        {
-          label: "Kaggle",
-          url: "https://www.kaggle.com/satya00089",
-          icon: "SiKaggle",
-          size: 32,
-        },
+        }
       ],
     },
   },
