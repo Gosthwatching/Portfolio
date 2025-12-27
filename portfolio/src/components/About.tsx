@@ -1,140 +1,94 @@
-import { animate, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import type { Personal } from "../types/portfolio";
-import * as SiIcons from "react-icons/si";
-import { Link } from "react-router-dom";
 
 export const About: React.FC<{ personal: Personal }> = ({ personal }) => {
-  const text = personal.name.split("");
-
-  const springScrollTo = (y: number) => {
-    const controls = animate(window.scrollY, y, {
-      type: "spring",
-      stiffness: 200,
-      damping: 30,
-      onUpdate: (latest) => window.scrollTo(0, latest),
-    });
-    return () => controls.stop();
-  };
-
-  const onNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    // normal navigation for external links
-    if (!href.startsWith("#")) return;
-
-    e.preventDefault();
-    const target = document.querySelector(href);
-    if (!target) return;
-
-    const headerEl = document.querySelector("header");
-    const headerH = headerEl?.offsetHeight ?? 0;
-    const y = target.getBoundingClientRect().top + window.scrollY - headerH;
-    springScrollTo(y);
-  };
-
   return (
-    <>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      {/* Texte à gauche */}
       <motion.div
-        initial={{ opacity: 0, y: 6 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="md:col-span-2"
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6 }}
       >
-        <motion.h1 className="text-4xl md:text-5xl font-bold leading-tight text-[var(--brand)]">
-          {text.map((char, i) => (
-            <motion.span
-              key={i}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.5 }}
-            >
-              {char}
-            </motion.span>
-          ))}
-        </motion.h1>
-        <p className="mt-4 text-lg max-w-prose">{personal.headline}</p>
-
-        <div className="mt-6 text-md dark:prose-invert max-w-none text-[var(--muted)]">
-          <p>
-            I design and build web applications with attention to performance,
-            accessibility, and delightful details. Currently focusing on React +
-            Tailwind workflows and component driven design.
-          </p>
-          <p>
-            I enjoy shipping small, meaningful features and improving dev DX
-            with tooling and automation.
+        <h1 className="text-4xl md:text-5xl font-bold text-[var(--brand)] mb-4">
+          {personal.name}
+        </h1>
+        <p className="text-xl text-[var(--text)] mb-6 font-medium">
+          {personal.title}
+        </p>
+        
+        <div className="prose prose-lg dark:prose-invert max-w-none text-[var(--muted)]">
+          <p className="text-base leading-relaxed">
+            {personal.summary || personal.headline || "Développeur passionné par la création d'applications web modernes et performantes."}
           </p>
         </div>
 
-        <div className="mt-6 flex gap-3">
+        <div className="mt-8 flex flex-wrap gap-3">
           <a
             href="#projects"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--brand)] text-white font-medium"
-            onClick={(e) => onNavClick(e, "#projects")}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[var(--brand)] text-white font-medium hover:opacity-90 transition"
           >
-            See projects
+            Voir mes projets
           </a>
-          <Link
-            to="/resume"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-800"
-          >
-            See Resume
-          </Link>
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-800"
-            onClick={(e) => onNavClick(e, "#contact")}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-[var(--brand)] text-[var(--brand)] font-medium hover:bg-[var(--brand)] hover:text-white transition"
           >
-            Get in touch
+            Me contacter
           </a>
         </div>
+
+        {/* Coordonnées */}
+        {personal.contact && (
+          <div className="mt-8 pt-6 border-t border-[var(--border)]">
+            <div className="space-y-2 text-sm text-[var(--muted)]">
+              {personal.contact.email && (
+                <div>
+                  <span className="font-semibold text-[var(--text)]">Email : </span>
+                  <a href={`mailto:${personal.contact.email}`} className="hover:text-[var(--brand)]">
+                    {personal.contact.email}
+                  </a>
+                </div>
+              )}
+              {personal.contact.location && (
+                <div>
+                  <span className="font-semibold text-[var(--text)]">Localisation : </span>
+                  {personal.contact.location}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </motion.div>
 
-      <motion.aside
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.15 }}
-        className="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--border)]"
+      {/* Photo à droite */}
+      <motion.div
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className="flex justify-center"
       >
-        <div className="flex flex-col items-center text-center gap-4">
-          <div className="w-32 h-32 rounded-full bg-gradient-to-br from-indigo-400 to-pink-400 flex items-center justify-center text-4xl font-bold text-white">
+        <div className="relative">
+          <div className="w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden shadow-2xl border-4 border-[var(--brand)]">
             {personal.avatar ? (
               <img
-                className="rounded-full"
                 src={personal.avatar}
-                alt="profile"
+                alt={personal.name}
+                className="w-full h-full object-cover"
               />
             ) : (
-              personal.name?.split(" ")[0]?.[0]
+              <div className="w-full h-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
+                <span className="text-6xl font-bold text-white">
+                  {personal.name.split(' ').map(n => n[0]).join('')}
+                </span>
+              </div>
             )}
           </div>
-          <div className="font-semibold">{personal.name}</div>
-          <div className="text-sm text-gray-500 dark:text-gray-400">
-            {personal.title}
-          </div>
-          <div className="mt-3 flex gap-5 text-[var(--muted)]">
-            {personal?.contact?.socials?.map((social, index) => {
-              const Icon = SiIcons[social.icon as keyof typeof SiIcons];
-              return (
-                <a
-                  key={social.label + index}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2"
-                >
-                  {Icon ? (
-                    <Icon
-                      className="hover:text-[var(--brand)]"
-                      size={social?.size ?? 16}
-                    />
-                  ) : (
-                    <span>{social.label}</span>
-                  )}
-                </a>
-              );
-            })}
-          </div>
+          {/* Déco */}
+          <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-[var(--brand)] rounded-full opacity-20 blur-2xl"></div>
+          <div className="absolute -top-4 -left-4 w-32 h-32 bg-purple-500 rounded-full opacity-10 blur-2xl"></div>
         </div>
-      </motion.aside>
-    </>
+      </motion.div>
+    </div>
   );
 };

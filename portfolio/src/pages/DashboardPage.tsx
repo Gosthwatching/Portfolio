@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import ProfileManager from '../components/admin/ProfileManager';
 import ProjectsManager from '../components/admin/ProjectsManager';
+import SkillsManager from '../components/admin/SkillsManager';
+import ExperiencesManager from '../components/admin/ExperiencesManager';
+import EducationManager from '../components/admin/EducationManager';
+import MessagesManager from '../components/admin/MessagesManager';
 
 const DashboardPage: React.FC = () => {
   const { logout } = useAuth();
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState<'projects' | 'skills' | 'experiences' | 'education' | 'messages'>('projects');
+  const [activeTab, setActiveTab] = useState<'profile' | 'projects' | 'skills' | 'experiences' | 'education' | 'messages'>('profile');
 
   const handleLogout = () => {
     logout();
@@ -14,6 +19,7 @@ const DashboardPage: React.FC = () => {
   };
 
   const tabs = [
+    { id: 'profile', label: 'Profil', icon: '👤' },
     { id: 'projects', label: 'Projets', icon: '📁' },
     { id: 'skills', label: 'Compétences', icon: '🛠️' },
     { id: 'experiences', label: 'Expériences', icon: '💼' },
@@ -73,6 +79,7 @@ const DashboardPage: React.FC = () => {
 
       {/* Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {activeTab === 'profile' && <ProfileManager />}
         {activeTab === 'projects' && <ProjectsManager />}
         {activeTab === 'skills' && <SkillsManager />}
         {activeTab === 'experiences' && <ExperiencesManager />}
@@ -82,30 +89,5 @@ const DashboardPage: React.FC = () => {
     </div>
   );
 };
-
-// Composants placeholder pour les autres sections
-const SkillsManager: React.FC = () => (
-  <div className="text-gray-500 text-center py-12 border-2 border-dashed border-gray-300 rounded-lg">
-    Interface CRUD des compétences à venir...
-  </div>
-);
-
-const ExperiencesManager: React.FC = () => (
-  <div className="text-gray-500 text-center py-12 border-2 border-dashed border-gray-300 rounded-lg">
-    Interface CRUD des expériences à venir...
-  </div>
-);
-
-const EducationManager: React.FC = () => (
-  <div className="text-gray-500 text-center py-12 border-2 border-dashed border-gray-300 rounded-lg">
-    Interface CRUD des formations à venir...
-  </div>
-);
-
-const MessagesManager: React.FC = () => (
-  <div className="text-gray-500 text-center py-12 border-2 border-dashed border-gray-300 rounded-lg">
-    Liste des messages à venir...
-  </div>
-);
 
 export default DashboardPage;

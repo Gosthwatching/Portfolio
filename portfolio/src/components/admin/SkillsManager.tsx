@@ -51,11 +51,14 @@ const SkillsManager: React.FC = () => {
 
     try {
       setLoading(true);
+      const token = localStorage.getItem('token');
+      const config = { headers: { Authorization: `Bearer ${token}` } };
+      
       if (editing) {
-        await axios.put(`${API_URL}/skills/${editing}`, form);
+        await axios.put(`${API_URL}/skills/${editing}`, form, config);
         setEditing(null);
       } else {
-        await axios.post(`${API_URL}/skills`, form);
+        await axios.post(`${API_URL}/skills`, form, config);
       }
 
       resetForm();
@@ -83,7 +86,9 @@ const SkillsManager: React.FC = () => {
     if (!confirm('Êtes-vous sûr de vouloir supprimer cette compétence ?')) return;
     try {
       setLoading(true);
-      await axios.delete(`${API_URL}/skills/${id}`);
+      const token = localStorage.getItem('token');
+      const config = { headers: { Authorization: `Bearer ${token}` } };
+      await axios.delete(`${API_URL}/skills/${id}`, config);
       fetchSkills();
     } catch (err) {
       console.error(err);
