@@ -11,7 +11,6 @@ import {
 import { PiSunDuotone, PiMoonDuotone } from "react-icons/pi";
 import { useTheme } from "../../context/ThemeContext";
 import { useLanguage } from "../../context/LanguageContext";
-import { Link } from "react-router-dom";
 
 type NavLink = { href: string; label: string };
 

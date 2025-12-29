@@ -3,14 +3,11 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { tagColors } from "../config/portfolioData";
 import type { Project } from "../types/portfolio";
-import * as SiIcons from "react-icons/si";
 import * as FaIcons from "react-icons/fa";
-import { BsArrowUpRightCircleFill } from "react-icons/bs";
 
 export const ProjectCard: React.FC<{
   project: Project;
-  onOpen?: (p: Project) => void;
-}> = ({ project, onOpen }) => {
+}> = ({ project }) => {
   const [showAll, setShowAll] = useState(false);
 
   // how many tags to show before "+x"

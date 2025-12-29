@@ -11,7 +11,6 @@ interface DownloadPDFButtonProps {
 }
 
 export const DownloadPDFButton: React.FC<DownloadPDFButtonProps> = ({
-  name = 'CV',
   className = '',
   variant = 'button',
 }) => {

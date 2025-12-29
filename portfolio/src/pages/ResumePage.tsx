@@ -4,7 +4,6 @@ import { ScrollProgressBar } from "../components/shared/ScrollProgressBar";
 import { Header } from "../components/shared/Header";
 import { Resume } from "../components/resume/Resume";
 import { Footer } from "../components/shared/Footer";
-import { DownloadPDFButton } from "../components/resume/DownloadPDFButton";
 
 const ResumePage: React.FC = () => {
   return (

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import * as SiIcons from "react-icons/si";
 import * as FaIcons from "react-icons/fa";
 import remarkGfm from "remark-gfm";
 import type { Project } from "../types/portfolio";
