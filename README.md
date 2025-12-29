@@ -1,303 +1,377 @@
-# Portfolio Professionnel
+# 🚀 Portfolio Professionnel Full-Stack
 
-Portfolio moderne et responsive avec interface d'administration complète, développé avec React, TypeScript, Node.js et MongoDB.
+> Portfolio moderne avec CMS intégré et gestion de contenu dynamique
 
-> **📌 Attribution importante** : Ce projet est basé sur un template créé par [Satya Subudhi](https://github.com/satyasubudhi). Le template original a été adapté et étendu pour utiliser une base de données MongoDB dynamique avec un backend Node.js/Express et un système de gestion de contenu (CMS) complet.
+Portfolio professionnel complet avec interface d'administration, développé en React/TypeScript et Node.js/MongoDB. Gérez votre contenu facilement via un dashboard sécurisé et présentez vos projets de manière professionnelle.
 
-## 📋 Table des matières
+---
 
-- [Aperçu](#aperçu)
-- [Fonctionnalités](#fonctionnalités)
-- [Technologies utilisées](#technologies-utilisées)
-- [Prérequis](#prérequis)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [Utilisation](#utilisation)
-- [Structure du projet](#structure-du-projet)
-- [Scripts disponibles](#scripts-disponibles)
-- [Déploiement](#déploiement)
+## 📌 Attribution
 
-## 🎯 Aperçu
+Ce projet est basé sur un template créé par [Satya Subudhi](https://github.com/satyasubudhi). Le template original a été considérablement étendu avec :
+- Backend Node.js/Express complet
+- Base de données MongoDB dynamique
+- Système CMS avec authentification JWT
+- Upload de fichiers (images, CV)
+- Interface d'administration complète
 
-Ce portfolio professionnel offre une présentation complète de vos projets, compétences et expériences avec :
-
-- **Interface publique** : Présentation de profil, projets, compétences, CV et formulaire de contact
-- **Interface d'administration** : Gestion complète du contenu (CRUD pour projets, compétences, expériences, formations)
-- **Design responsive** : Compatible tous supports (mobile, tablette, desktop)
-- **Thème clair/sombre** : Bascule entre les modes avec transitions fluides
+---
 
 ## ✨ Fonctionnalités
 
-### Pages publiques
-- ✅ Profil professionnel avec informations personnelles
-- ✅ Galerie de projets avec modal détaillé
-- ✅ Visualisation des compétences (graphiques circulaires)
-- ✅ CV consultable et téléchargeable en PDF
-- ✅ CV interactif style CLI (terminal)
-- ✅ Formulaire de contact (messages stockés en base de données)
-- ✅ Animations fluides et scroll progressif
+### 🌐 Site Public
+- ✅ Page d'accueil avec profil personnalisé (bio bilingue FR/EN)
+- ✅ Galerie de projets interactive avec modales détaillées
+- ✅ Visualisation des compétences par catégories
+- ✅ Section expériences professionnelles
+- ✅ Section formation académique
+- ✅ Page CV/Resume téléchargeable en PDF
+- ✅ Formulaire de contact avec stockage en base
+- ✅ Mode sombre/clair avec animations fluides
+- ✅ Design 100% responsive
 
-### Interface d'administration sécurisée
-- ✅ Authentification JWT
-- ✅ Gestion du profil
-- ✅ CRUD Projets (titre, description, tags, images, liens)
-- ✅ CRUD Compétences (nom, niveau, catégorie)
+### 🔐 Dashboard Admin
+- ✅ Authentification JWT sécurisée
+- ✅ Gestion du profil (avatar, bio, réseaux sociaux, CV)
+- ✅ CRUD Projets (images, tags, technologies, liens GitHub/Live)
+- ✅ CRUD Compétences (catégories, niveaux)
 - ✅ CRUD Expériences professionnelles
-- ✅ CRUD Formations
+- ✅ CRUD Formations académiques
 - ✅ Consultation des messages de contact
+- ✅ Upload de fichiers (images, PDF)
 
-## 🛠️ Technologies utilisées
+---
+
+## 🛠️ Technologies
 
 ### Frontend
-- **React 19** - Framework UI
-- **TypeScript** - Typage statique
-- **Vite** - Outil de build rapide
-- **Tailwind CSS 4** - Framework CSS utility-first
-- **Framer Motion** - Animations
-- **React Router DOM** - Routage
-- **Axios** - Requêtes HTTP
-- **React Markdown** - Rendu Markdown
-- **Lucide React** - Icônes
+```
+React 19          TypeScript        Vite
+Tailwind CSS 4    Framer Motion     React Router
+Axios             React Icons       React Markdown
+```
 
 ### Backend
-- **Node.js** - Runtime JavaScript
-- **Express.js** - Framework web
-- **MongoDB + Mongoose** - Base de données NoSQL
-- **JWT** - Authentification
-- **Bcrypt** - Hashage de mots de passe
-- **Multer** - Upload de fichiers
-- **CORS** - Gestion des origines croisées
-
-## 📦 Prérequis
-
-Avant de commencer, assurez-vous d'avoir installé :
-
-- **Node.js** (version 18 ou supérieure)
-- **npm** ou **yarn**
-- **MongoDB** (local ou Atlas)
-- **Git**
-
-## 🚀 Installation
-
-### 1. Cloner le repository
-
-```bash
-git clone <url-du-repo>
-cd Portfolio
+```
+Node.js           Express.js        MongoDB
+Mongoose          JWT               Bcrypt
+Multer            CORS              Dotenv
 ```
 
-### 2. Installer les dépendances
+---
 
-#### Backend
+## 📦 Installation Rapide
+
+### Prérequis
+- Node.js 18+
+- MongoDB (local ou Atlas)
+- Git
+
+### 1️⃣ Cloner et installer
+
 ```bash
+# Cloner le projet
+git clone https://github.com/Gosthwatching/Portfolio.git
+cd Portfolio
+
+# Installer backend
 cd backend
 npm install
-```
 
-#### Frontend
-```bash
-cd portfolio
+# Installer frontend
+cd ../portfolio
 npm install
 ```
 
-## ⚙️ Configuration
+### 2️⃣ Configurer le backend
 
-### Configuration du Backend
-
-1. Créer un fichier `.env` dans le dossier `backend/` :
+Créer `backend/.env` :
 
 ```env
-# Port du serveur
 PORT=4000
-
-# URL de connexion MongoDB
 MONGODB_URI=mongodb://localhost:27017/portfolio
-# OU pour MongoDB Atlas :
-# MONGODB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/portfolio
-
-# Secret pour JWT (générer une clé aléatoire sécurisée)
-JWT_SECRET=votre_secret_jwt_ultra_securise_changez_moi
-
-# Environnement
+JWT_SECRET=votre_secret_jwt_changez_moi_URGENT
 NODE_ENV=development
 ```
 
-2. Initialiser la base de données avec un admin par défaut :
+**Pour MongoDB Atlas :**
+```env
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/portfolio
+```
+
+### 3️⃣ Initialiser la base de données
 
 ```bash
 cd backend
 node scripts/seedAdmin.js
 ```
 
-**Identifiants par défaut :**
+**Identifiants admin par défaut :**
 - Email : `admin@portfolio.com`
 - Mot de passe : `admin123`
 
-⚠️ **Important** : Changez ces identifiants dès la première connexion !
+⚠️ **IMPORTANT** : Changez ces identifiants après la première connexion !
 
-### Configuration du Frontend
+### 4️⃣ Lancer le projet
 
-Le frontend se connecte au backend via l'URL définie dans les fichiers :
-- `portfolio/src/config/api.ts`
-- `portfolio/src/pages/PortfolioPage.tsx`
-
-Par défaut : `http://localhost:4000/api`
-
-## 🎮 Utilisation
-
-### Démarrer le projet en mode développement
-
-#### 1. Démarrer MongoDB
-
-**Avec MongoDB local :**
-```bash
-mongod
-```
-
-**Avec MongoDB Atlas :**
-Assurez-vous que votre cluster est actif et l'URL de connexion configurée dans `.env`
-
-#### 2. Démarrer le Backend
-
+**Terminal 1 - Backend :**
 ```bash
 cd backend
 npm run dev
 ```
+→ API : `http://localhost:4000`
 
-Le serveur démarre sur `http://localhost:4000`
-
-#### 3. Démarrer le Frontend
-
+**Terminal 2 - Frontend :**
 ```bash
 cd portfolio
 npm run dev
 ```
+→ Site : `http://localhost:5173`
 
-Le site est accessible sur `http://localhost:5173`
-
-### Accéder à l'interface d'administration
-
-1. Aller sur : `http://localhost:5173/admin/login`
-2. Se connecter avec les identifiants par défaut ou vos identifiants
-3. Gérer votre contenu via le dashboard
-
-## 📁 Structure du projet
-
-```
-Portfolio/
-├── backend/                 # Serveur Node.js/Express
-│   ├── src/
-│   │   ├── controllers/    # Logique métier
-│   │   ├── models/         # Modèles MongoDB
-│   │   ├── routes/         # Routes API
-│   │   ├── middlewares/    # Auth, upload, etc.
-│   │   ├── repositories/   # Accès aux données
-│   │   └── app.js         # Point d'entrée
-│   ├── scripts/           # Scripts d'initialisation
-│   ├── uploads/           # Fichiers uploadés
-│   └── package.json
-│
-├── portfolio/             # Application React
-│   ├── src/
-│   │   ├── components/   # Composants React
-│   │   │   ├── admin/   # Interfaces d'administration
-│   │   │   ├── resume/  # Composants CV
-│   │   │   └── shared/  # Composants partagés
-│   │   ├── pages/       # Pages principales
-│   │   ├── context/     # Contextes React (Auth, Theme)
-│   │   ├── config/      # Configuration et données
-│   │   ├── types/       # Types TypeScript
-│   │   └── utils/       # Utilitaires
-│   └── package.json
-│
-└── README.md            # Ce fichier
-```
-
-## 📜 Scripts disponibles
-
-### Backend (`backend/`)
-
-```bash
-npm run dev      # Démarrage en mode développement (nodemon)
-npm start        # Démarrage en production
-```
-
-### Frontend (`portfolio/`)
-
-```bash
-npm run dev      # Serveur de développement Vite
-npm run build    # Build de production
-npm run preview  # Preview du build
-npm run lint     # Linter ESLint
-```
-
-### Scripts d'initialisation (`backend/scripts/`)
-
-```bash
-node scripts/seedAdmin.js              # Créer un admin par défaut
-node scripts/resetAdmin.js             # Réinitialiser le mot de passe admin
-node scripts/seedPortfolio.js          # Données d'exemple
-node scripts/seedFromPortfolioData.js  # Import depuis portfolioData.ts
-```
-
-## 🌐 Déploiement
-
-### Backend
-
-**Options recommandées :**
-- [Render](https://render.com)
-- [Railway](https://railway.app)
-- [Heroku](https://heroku.com)
-- [DigitalOcean](https://digitalocean.com)
-
-**Variables d'environnement à configurer :**
-- `MONGODB_URI`
-- `JWT_SECRET`
-- `PORT`
-- `NODE_ENV=production`
-
-### Frontend
-
-**Options recommandées :**
-- [Vercel](https://vercel.com) (recommandé pour React/Vite)
-- [Netlify](https://netlify.com)
-- [GitHub Pages](https://pages.github.com)
-
-**Configuration :**
-1. Mettre à jour l'URL du backend dans `src/config/api.ts`
-2. Build : `npm run build`
-3. Déployer le dossier `dist/`
-
-### Base de données
-
-**MongoDB Atlas** (gratuit pour commencer) :
-1. Créer un cluster sur [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
-2. Configurer l'accès réseau (whitelist IP)
-3. Copier l'URL de connexion dans `MONGODB_URI`
-
-## 🔐 Sécurité
-
-- Les mots de passe sont hashés avec bcrypt
-- Authentification JWT pour l'administration
-- Routes admin protégées par middleware
-- CORS configuré pour les origines autorisées
-- Variables d'environnement pour les secrets
-
-⚠️ **À faire avant la mise en production :**
-- Changer les identifiants admin par défaut
-- Générer un JWT_SECRET fort et unique
-- Configurer CORS avec les bonnes origines
-- Activer HTTPS
-- Limiter les tentatives de connexion
-
-## 📝 Licence
-
-Ce projet est développé dans un cadre éducatif.
-
-## 👤 Auteur
-
-Votre nom - Portfolio professionnel
+**Accéder au dashboard :**
+`http://localhost:5173/#/login`
 
 ---
 
-**Bon développement ! 🚀**
+## 📁 Structure du Projet
+
+```
+Portfolio/
+├── backend/                    # API Node.js/Express
+│   ├── src/
+│   │   ├── controllers/       # Logique métier (auth, projets, etc.)
+│   │   ├── models/            # Modèles Mongoose (Profile, Project, etc.)
+│   │   ├── routes/            # Routes API (/api/projects, /api/auth, etc.)
+│   │   ├── middlewares/       # Auth JWT, upload Multer
+│   │   ├── repositories/      # Requêtes base de données
+│   │   ├── db/                # Connexion MongoDB
+│   │   └── app.js             # Point d'entrée Express
+│   ├── scripts/               # Scripts initialisation DB
+│   ├── uploads/               # Images/CV uploadés
+│   └── package.json
+│
+├── portfolio/                  # App React/TypeScript
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── admin/         # Dashboard (CRUD managers)
+│   │   │   ├── resume/        # Page CV
+│   │   │   └── shared/        # Composants réutilisables
+│   │   ├── pages/             # PortfolioPage, DashboardPage, LoginPage
+│   │   ├── context/           # AuthContext, ThemeContext, LanguageContext
+│   │   ├── config/            # API config, données statiques
+│   │   ├── types/             # Types TypeScript
+│   │   └── utils/             # Helpers
+│   └── package.json
+│
+└── README.md
+```
+
+---
+
+## 🎮 Scripts Disponibles
+
+### Backend
+
+```bash
+npm run dev      # Serveur développement (nodemon + hot-reload)
+npm start        # Serveur production
+```
+
+### Frontend
+
+```bash
+npm run dev      # Vite dev server (hot-reload)
+npm run build    # Build production
+npm run preview  # Preview du build
+npm run lint     # ESLint
+```
+
+### Scripts Base de Données
+
+```bash
+# Dans backend/
+node scripts/seedAdmin.js              # Créer admin par défaut
+node scripts/resetAdmin.js             # Réinitialiser mot de passe admin
+node scripts/seedPortfolio.js          # Importer données d'exemple
+```
+
+---
+
+## 🌐 Déploiement
+
+### Stack Recommandée (100% Gratuit)
+
+| Service | Usage | Plan Gratuit |
+|---------|-------|--------------|
+| **MongoDB Atlas** | Base de données | 512 MB |
+| **Render** | Backend API | 750h/mois |
+| **Vercel** | Frontend | Illimité |
+
+### 1️⃣ MongoDB Atlas
+
+1. Créer compte sur [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+2. Créer cluster **M0 Free**
+3. Database Access → Créer utilisateur
+4. Network Access → Autoriser `0.0.0.0/0`
+5. Récupérer connection string :
+   ```
+   mongodb+srv://username:password@cluster.mongodb.net/portfolio
+   ```
+
+### 2️⃣ Backend sur Render
+
+1. Aller sur [Render](https://render.com)
+2. **New → Web Service**
+3. Connecter repo GitHub
+4. Configuration :
+   - **Root Directory** : `backend`
+   - **Build Command** : `npm install`
+   - **Start Command** : `npm start`
+   - **Environment** : Node
+
+5. **Variables d'environnement :**
+   ```
+   MONGODB_URI=mongodb+srv://...
+   JWT_SECRET=changez_moi_secret_aleatoire
+   PORT=4000
+   NODE_ENV=production
+   ```
+
+6. Déployer → Noter l'URL : `https://votre-app.onrender.com`
+
+### 3️⃣ Frontend sur Vercel
+
+**Modifier d'abord l'URL de l'API :**
+
+`portfolio/src/config/api.ts` :
+```typescript
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
+export default API_URL;
+```
+
+`portfolio/src/pages/PortfolioPage.tsx` (ligne 18) :
+```typescript
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/api";
+```
+
+**Créer `portfolio/.env.production` :**
+```
+VITE_API_URL=https://votre-app.onrender.com/api
+```
+
+**Déployer :**
+```bash
+cd portfolio
+npm run build
+
+# Installer Vercel CLI
+npm i -g vercel
+
+# Déployer
+vercel
+```
+
+**Ou via GitHub :**
+1. Push sur GitHub
+2. Importer sur [Vercel](https://vercel.com)
+3. Root Directory : `portfolio`
+4. Variables : `VITE_API_URL=https://votre-app.onrender.com/api`
+
+---
+
+## 🔐 Sécurité
+
+### ✅ Implémenté
+- Mots de passe hashés avec bcrypt (10 rounds)
+- Authentification JWT avec expiration 7 jours
+- Routes admin protégées par middleware
+- CORS configuré
+- Validation des entrées utilisateur
+
+### ⚠️ À faire en production
+- [ ] Changer identifiants admin par défaut
+- [ ] Générer JWT_SECRET fort (32+ caractères aléatoires)
+- [ ] Configurer CORS avec origines spécifiques
+- [ ] Activer HTTPS obligatoire
+- [ ] Limiter tentatives de connexion (rate limiting)
+- [ ] Valider/sanitiser uploads de fichiers
+- [ ] Configurer CSP (Content Security Policy)
+
+---
+
+## 📚 API Endpoints
+
+### Publiques
+```
+GET  /api/profile          # Récupérer profil
+GET  /api/projects         # Liste projets
+GET  /api/skills           # Liste compétences
+GET  /api/experiences      # Liste expériences
+GET  /api/education        # Liste formations
+POST /api/messages         # Envoyer message contact
+```
+
+### Protégées (JWT required)
+```
+POST   /api/auth/login            # Login admin
+PUT    /api/profile               # Modifier profil
+POST   /api/projects              # Créer projet
+PUT    /api/projects/:id          # Modifier projet
+DELETE /api/projects/:id          # Supprimer projet
+GET    /api/messages              # Consulter messages
+DELETE /api/messages/:id          # Supprimer message
+# + routes similaires pour skills, experiences, education
+```
+
+---
+
+## 🐛 Troubleshooting
+
+### Le frontend ne se connecte pas au backend
+- Vérifier que le backend tourne sur port 4000
+- Vérifier CORS dans `backend/src/app.js`
+- Vérifier URL API dans `portfolio/src/config/api.ts`
+
+### "MongooseServerSelectionError"
+- Vérifier MongoDB est lancé (`mongod`)
+- Vérifier MONGODB_URI dans `.env`
+- Pour Atlas : vérifier IP autorisée
+
+### Images ne s'affichent pas
+- Vérifier dossier `backend/uploads/` existe
+- Vérifier routes statiques dans `app.js` :
+  ```javascript
+  app.use('/uploads', express.static('uploads'));
+  ```
+
+### Token JWT invalide
+- Vérifier JWT_SECRET identique dans `.env`
+- Vérifier token stocké dans localStorage
+- Se reconnecter au dashboard
+
+---
+
+## 📄 Licence
+
+Projet éducatif - Libre d'utilisation
+
+---
+
+## 👤 Auteur
+
+**Votre Nom**  
+Portfolio : [Votre URL]  
+GitHub : [@Gosthwatching](https://github.com/Gosthwatching)
+
+---
+
+## 🙏 Remerciements
+
+- [Satya Subudhi](https://github.com/satyasubudhi) - Template original
+- [Tailwind CSS](https://tailwindcss.com) - Framework CSS
+- [Framer Motion](https://www.framer.com/motion/) - Animations
+- Communauté Open Source
+
+---
+
+**Fait avec ❤️ et beaucoup de ☕**
