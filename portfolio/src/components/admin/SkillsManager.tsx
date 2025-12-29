@@ -10,7 +10,7 @@ interface Skill {
   icon?: string;
 }
 
-const API_URL = 'http://localhost:4000/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
 
 const SkillsManager: React.FC = () => {
   const [skills, setSkills] = useState<Skill[]>([]);

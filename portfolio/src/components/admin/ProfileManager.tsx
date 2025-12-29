@@ -21,6 +21,8 @@ interface Profile {
   cvUrl: string;
 }
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
+
 const ProfileManager: React.FC = () => {
   const [profile, setProfile] = useState<Profile>({
     firstName: '',
@@ -50,7 +52,7 @@ const ProfileManager: React.FC = () => {
 
   const fetchProfile = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/api/profile');
+      const response = await axios.get(`${API_URL}/profile`);
       if (response.data) {
         setProfile(response.data);
       }
@@ -92,7 +94,7 @@ const ProfileManager: React.FC = () => {
       if (profile._id) {
         // Update existing profile
         await axios.put(
-          `http://localhost:4000/api/profile`,
+          `${API_URL}/profile`,
           fd,
           { 
             headers: { 
@@ -106,7 +108,7 @@ const ProfileManager: React.FC = () => {
       } else {
         // Create new profile
         const response = await axios.post(
-          'http://localhost:4000/api/profile',
+          `${API_URL}/profile`,
           fd,
           { 
             headers: { 

@@ -11,7 +11,7 @@ interface Message {
   createdAt: string;
 }
 
-const API_URL = 'http://localhost:4000/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
 
 const MessagesManager: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
