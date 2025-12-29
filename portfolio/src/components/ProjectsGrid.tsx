@@ -4,9 +4,8 @@ import type { Project } from "../types/portfolio";
 
 export const ProjectsGrid: React.FC<{
   projects?: Project[];
-  onOpen?: (p: Project) => void;
   showFilters?: boolean;
-}> = ({ projects = [], onOpen, showFilters = false }) => {
+}> = ({ projects = [], showFilters = false }) => {
   const [filter, setFilter] = useState<string>("All");
   const filters = useMemo(
     () => [
