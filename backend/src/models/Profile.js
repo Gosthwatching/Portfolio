@@ -6,6 +6,8 @@ const profileSchema = new mongoose.Schema({
   lastName: { type: String, required: true },
   title: String,
   bio: String,
+  bio_fr: String,
+  bio_en: String,
   email: { type: String, required: true },
   phone: String,
   location: String,

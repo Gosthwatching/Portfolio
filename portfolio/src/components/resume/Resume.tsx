@@ -1,38 +1,121 @@
 // src/components/Resume.tsx
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { IoIosMail } from "react-icons/io";
 import { LuMapPinHouse } from "react-icons/lu";
 import { FaFileDownload } from "react-icons/fa";
 import { TbWorldWww } from "react-icons/tb";
 import { IoPhonePortrait } from "react-icons/io5";
 import * as SiIcons from "react-icons/si";
-import { PORTFOLIO_INFO } from "../../config/portfolioData";
-import type { DateRange, Portfolio } from "../../types/portfolio";
+import axios from "axios";
+import type { DateRange } from "../../types/portfolio";
+
+const API_URL = "http://localhost:4000/api";
 
 export const Resume: React.FC<{ className?: string }> = ({
   className = "",
 }) => {
-  const resumeInfo: Portfolio = PORTFOLIO_INFO;
+  const [profile, setProfile] = useState<any>(null);
+  const [projects, setProjects] = useState<any[]>([]);
+  const [skills, setSkills] = useState<any[]>([]);
+  const [experiences, setExperiences] = useState<any[]>([]);
+  const [education, setEducation] = useState<any[]>([]);
+  const [certifications, setCertifications] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const personal = resumeInfo.personal ?? {
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const [profileRes, projectsRes, skillsRes, experiencesRes, educationRes, certificationsRes] = await Promise.all([
+        axios.get(`${API_URL}/profile`),
+        axios.get(`${API_URL}/projects`),
+        axios.get(`${API_URL}/skills`),
+        axios.get(`${API_URL}/experiences`),
+        axios.get(`${API_URL}/education`),
+        axios.get(`${API_URL}/certifications`),
+      ]);
+      
+      if (profileRes.data) {
+        setProfile(profileRes.data);
+      }
+      
+      setProjects(projectsRes.data || []);
+      
+      // Group skills by category
+      const skillsByCategory = (skillsRes.data || []).reduce((acc: any, skill: any) => {
+        const category = skill.category || 'Other';
+        if (!acc[category]) {
+          acc[category] = [];
+        }
+        acc[category].push({
+          name: skill.name,
+          years: skill.years,
+        });
+        return acc;
+      }, {});
+      
+      const skillGroups = Object.entries(skillsByCategory).map(([title, skills]) => ({
+        title,
+        skills: skills as any[],
+      }));
+      setSkills(skillGroups);
+      
+      setExperiences(experiencesRes.data || []);
+      setEducation(educationRes.data || []);
+      setCertifications(certificationsRes.data || []);
+      
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching resume data:", error);
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-lg">Chargement...</div>
+      </div>
+    );
+  }
+
+  const personal = profile ? {
+    name: `${profile.firstName || ''} ${profile.lastName || ''}`.trim(),
+    title: profile.title,
+    headline: profile.headline,
+    summary: profile.bio || profile.summary,
+    contact: {
+      email: profile.email,
+      phone: profile.phone,
+      location: profile.location,
+      website: profile.website,
+      socials: [
+        profile.linkedin && { label: "LinkedIn", url: profile.linkedin, icon: "SiLinkedin" },
+        profile.github && { label: "GitHub", url: profile.github, icon: "SiGithub" },
+      ].filter(Boolean),
+    },
+  } : {
     name: "Your Name",
     title: "",
     headline: "",
-    avatar: undefined,
     summary: "",
-    contact: undefined,
+    contact: {},
   };
 
   const contact = personal.contact ?? {};
-  const meta = resumeInfo.meta ?? {};
 
-  function formatDate(date?: string | DateRange): string {
+  function formatDate(date?: string | DateRange | any): string {
     if (!date) return "";
     if (typeof date === "string") return date;
 
-    const start = date.start ?? "";
-    if (date.present) return `${start} — Present`;
-    if (date.end) return `${start} — ${date.end}`;
+    const start = date.start ?? date.startDate ?? "";
+    const end = date.end ?? date.endDate ?? "";
+    const isCurrent = date.present ?? date.current ?? false;
+    
+    if (isCurrent) return `${start} — Présent`;
+    if (end) return `${start} — ${end}`;
     return start;
   }
 
@@ -142,35 +225,23 @@ export const Resume: React.FC<{ className?: string }> = ({
       {/* Summary */}
       {personal.summary && (
         <section>
-          <h2 className="text-base font-semibold mt-4">Summary</h2>
+          <h2 className="text-base font-semibold mt-4">À propos</h2>
           <p className="text-sm text-[var(--text)]">{personal.summary}</p>
         </section>
       )}
 
-      {/* Highlights (optional) */}
-      {resumeInfo.highlights?.length ? (
-        <section>
-          <h2 className="text-base font-semibold mt-4">Highlights</h2>
-          <ul className="list-disc list-inside text-sm">
-            {resumeInfo.highlights.map((h, idx) => (
-              <li key={idx}>{h}</li>
-            ))}
-          </ul>
-        </section>
-      ) : null}
-
       {/* Skills (groups) */}
-      {resumeInfo.skills && resumeInfo.skills.length > 0 && (
+      {skills && skills.length > 0 && (
         <section>
-          <h2 className="text-base font-semibold mt-4">Skills</h2>
+          <h2 className="text-base font-semibold mt-4">Compétences</h2>
           <div className="space-y-3">
-            {resumeInfo.skills.map((group, gi) => (
+            {skills.map((group, gi) => (
               <div key={gi}>
                 {group.title && (
                   <div className="text-sm font-medium mb-1">{group.title}</div>
                 )}
                 <ul className="flex flex-wrap gap-2 text-sm">
-                  {group.skills.map((s) => (
+                  {group.skills.map((s: any) => (
                     <li
                       key={s.name}
                       className="px-2 py-1 rounded-md bg-[var(--surface)] border border-[var(--border)] text-[var(--text)]"
@@ -196,16 +267,16 @@ export const Resume: React.FC<{ className?: string }> = ({
       )}
 
       {/* Experience */}
-      {resumeInfo.experience && resumeInfo.experience.length > 0 && (
+      {experiences && experiences.length > 0 && (
         <section>
-          <h2 className="text-base font-semibold mt-4">Experience</h2>
+          <h2 className="text-base font-semibold mt-4">Expérience</h2>
           <div className="space-y-6">
-            {resumeInfo.experience.map((exp, idx) => (
-              <div key={exp.id ?? `${exp.title}-${idx}`} className="text-sm">
+            {experiences.map((exp, idx) => (
+              <div key={exp._id ?? `${exp.position}-${idx}`} className="text-sm">
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start">
                   <div>
                     <div className="font-medium">
-                      {exp.title}
+                      {exp.position}
                       {exp.company ? (
                         <span className="text-[var(--muted)]">
                           {" "}
@@ -220,28 +291,12 @@ export const Resume: React.FC<{ className?: string }> = ({
                     )}
                   </div>
                   <div className="text-[var(--muted)] mt-2 sm:mt-0">
-                    {formatDate(exp?.date)}
+                    {formatDate({ startDate: exp.startDate, endDate: exp.endDate, current: exp.current })}
                   </div>
                 </div>
 
-                {exp.summary && (
-                  <p className="mt-2 text-[var(--text)]">{exp.summary}</p>
-                )}
-
-                {exp.bullets && exp.bullets.length > 0 && (
-                  <ul className="list-disc list-inside mt-2">
-                    {exp.bullets.map((b, i) => (
-                      <li key={i} className="text-[var(--text)]">
-                        {b}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-
-                {exp.tech && exp.tech.length > 0 && (
-                  <div className="mt-2 text-xs text-[var(--muted)]">
-                    Tech: {exp.tech.join(", ")}
-                  </div>
+                {exp.description && (
+                  <p className="mt-2 text-[var(--text)]">{exp.description}</p>
                 )}
               </div>
             ))}
@@ -250,21 +305,15 @@ export const Resume: React.FC<{ className?: string }> = ({
       )}
 
       {/* Projects */}
-      {resumeInfo.projects && resumeInfo.projects.length > 0 && (
+      {projects && projects.length > 0 && (
         <section>
-          <h2 className="text-base font-semibold mt-4">Projects</h2>
+          <h2 className="text-base font-semibold mt-4">Projets</h2>
           <div className="space-y-4">
-            {resumeInfo.projects.map((p) => (
-              <div key={p.id ?? p.title} className="text-sm">
+            {projects.map((p) => (
+              <div key={p._id ?? p.title} className="text-sm">
                 <div className="flex justify-between">
                   <div className="font-medium">
                     {p.title}
-                    {p.short ? (
-                      <span className="text-[var(--muted)]"> — {p.short}</span>
-                    ) : null}
-                  </div>
-                  <div className="text-[var(--muted)]">
-                    {typeof p.date === "string" ? p.date : p.date?.start ?? ""}
                   </div>
                 </div>
                 {p.description && (
@@ -272,7 +321,7 @@ export const Resume: React.FC<{ className?: string }> = ({
                 )}
                 {p.tags && p.tags.length > 0 && (
                   <div className="mt-2 flex gap-2 flex-wrap">
-                    {p.tags.map((t) => (
+                    {p.tags.map((t: string) => (
                       <span
                         key={t}
                         className="text-xs font-semibold px-2 py-1 rounded-full bg-[var(--surface)] border border-[var(--border)]"
@@ -289,13 +338,13 @@ export const Resume: React.FC<{ className?: string }> = ({
       )}
 
       {/* Education */}
-      {resumeInfo.education && resumeInfo.education.length > 0 && (
+      {education && education.length > 0 && (
         <section>
-          <h2 className="text-base font-semibold mt-4">Education</h2>
+          <h2 className="text-base font-semibold mt-4">Formation</h2>
           <div className="space-y-2 text-sm">
-            {resumeInfo.education.map((ed) => (
+            {education.map((ed) => (
               <div
-                key={ed.school ?? ed.degree}
+                key={ed._id ?? ed.degree}
                 className="flex justify-between"
               >
                 <div>
@@ -303,9 +352,7 @@ export const Resume: React.FC<{ className?: string }> = ({
                   {ed.school ? <span className="ml-2">{ed.school}</span> : null}
                 </div>
                 <div className="text-[var(--muted)]">
-                  {typeof ed.date === "string"
-                    ? ed.date
-                    : ed.date?.start ?? ed.date?.end ?? ""}
+                  {formatDate({ startDate: ed.startDate, endDate: ed.endDate })}
                 </div>
               </div>
             ))}
@@ -314,22 +361,22 @@ export const Resume: React.FC<{ className?: string }> = ({
       )}
 
       {/* Certifications */}
-      {resumeInfo.certifications && resumeInfo.certifications.length > 0 && (
+      {certifications && certifications.length > 0 && (
         <section>
           <h2 className="text-base font-semibold mt-4">Certifications</h2>
           <ul className="text-sm list-disc list-inside">
-            {resumeInfo.certifications.map((c) => (
-              <li key={c.name}>
+            {certifications.map((c) => (
+              <li key={c._id ?? c.name}>
                 <span className="font-medium">
                   {c.name}
-                  {(c.issuer || c.url) && (
+                  {(c.issuer || c.link) && (
                     <span className="text-[var(--muted)]">
                       {c.issuer && (
                         <>
                           {" — "}
-                          {c.url ? (
+                          {c.link ? (
                             <a
-                              href={c.url}
+                              href={c.link}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="underline text-sm"
@@ -343,14 +390,14 @@ export const Resume: React.FC<{ className?: string }> = ({
                       )}
 
                       {/* If there's a URL but no issuer, just show "Link" */}
-                      {!c.issuer && c.url && (
+                      {!c.issuer && c.link && (
                         <a
-                          href={c.url}
+                          href={c.link}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="underline text-sm"
                         >
-                          Link
+                          Lien
                         </a>
                       )}
                     </span>
@@ -358,9 +405,7 @@ export const Resume: React.FC<{ className?: string }> = ({
                 </span>
                 {c.date && (
                   <span className="text-xs text-[var(--muted)] ml-3">
-                    {typeof c.date === "string"
-                      ? c.date
-                      : c.date.start ?? c.date.end}
+                    {c.date}
                   </span>
                 )}
               </li>
@@ -377,11 +422,11 @@ export const Resume: React.FC<{ className?: string }> = ({
           </div>
           <div className="flex items-center gap-3">
             <a
-              href={meta.pdf ?? "/resume.pdf"}
+              href={profile?.cv ? `http://localhost:4000${profile.cv}` : "/resume.pdf"}
               className="inline-flex items-center gap-2 text-sm underline"
               download
             >
-              <FaFileDownload className="w-4 h-4" /> Download PDF
+              <FaFileDownload className="w-4 h-4" /> Télécharger PDF
             </a>
           </div>
         </div>

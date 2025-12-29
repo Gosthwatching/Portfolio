@@ -132,7 +132,6 @@ const ExperiencesManager: React.FC = () => {
                 value={form.position}
                 onChange={(e) => setForm({ ...form, position: e.target.value })}
                 className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-                placeholder="Développeur Full Stack"
               />
             </div>
           </div>
@@ -167,7 +166,6 @@ const ExperiencesManager: React.FC = () => {
               onChange={(e) => setForm({ ...form, description: e.target.value })}
               className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
               rows={4}
-              placeholder="Décrivez vos responsabilités et réalisations..."
             />
           </div>
 

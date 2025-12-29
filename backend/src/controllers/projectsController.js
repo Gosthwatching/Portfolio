@@ -21,14 +21,28 @@ async function get(req, res) {
 
 async function create(req, res) {
   try {
-    // if an image was uploaded, set imageUrl
     if (req.file) {
       req.body.imageUrl = `/uploads/${req.file.filename}`;
+    }
+    // Parser tags et techStack si ce sont des strings JSON
+    if (typeof req.body.tags === 'string') {
+      try {
+        req.body.tags = JSON.parse(req.body.tags);
+      } catch (e) {
+        req.body.tags = [];
+      }
+    }
+    if (typeof req.body.techStack === 'string') {
+      try {
+        req.body.techStack = JSON.parse(req.body.techStack);
+      } catch (e) {
+        req.body.techStack = [];
+      }
     }
     const result = await repo.create(req.body);
     res.status(201).json(result);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: 'Erreur création projet' });
   }
 }
 
@@ -37,11 +51,26 @@ async function update(req, res) {
     if (req.file) {
       req.body.imageUrl = `/uploads/${req.file.filename}`;
     }
+    // Parser tags et techStack si ce sont des strings JSON
+    if (typeof req.body.tags === 'string') {
+      try {
+        req.body.tags = JSON.parse(req.body.tags);
+      } catch (e) {
+        req.body.tags = [];
+      }
+    }
+    if (typeof req.body.techStack === 'string') {
+      try {
+        req.body.techStack = JSON.parse(req.body.techStack);
+      } catch (e) {
+        req.body.techStack = [];
+      }
+    }
     const result = await repo.update(req.params.id, req.body);
-    if (!result) return res.status(404).json({ message: 'Not found' });
+    if (!result) return res.status(404).json({ message: 'Projet introuvable' });
     res.json(result);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: 'Erreur maj projet' });
   }
 }
 

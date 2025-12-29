@@ -81,7 +81,9 @@ export type Project = {
   title: string;
   short?: string; // one-line description
   description?: string; // longer description, markdown ok
+  longDescription?: string; // detailed description
   tags?: string[]; // technologies / categories
+  techStack?: string[]; // list of technologies used
   image?: Url; // preview image path
   href?: Url; // live url (for playground)
   links?: ProjectLink[]; // alternate links

@@ -18,4 +18,13 @@ async function list(req, res) {
   }
 }
 
-module.exports = { create, list };
+async function remove(req, res) {
+  try {
+    await repo.remove(req.params.id);
+    res.json({ message: 'Message supprimé' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
+module.exports = { create, list, remove };

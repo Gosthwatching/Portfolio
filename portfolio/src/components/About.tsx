@@ -1,7 +1,23 @@
-import { motion } from "framer-motion";
+import { motion, animate } from "framer-motion";
 import type { Personal } from "../types/portfolio";
 
 export const About: React.FC<{ personal: Personal }> = ({ personal }) => {
+  const smoothScrollTo = (targetId: string) => {
+    const target = document.querySelector(targetId);
+    if (!target) return;
+    
+    const header = document.querySelector("header");
+    const headerHeight = header?.offsetHeight ?? 0;
+    const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+    
+    animate(window.scrollY, targetPosition, {
+      type: "spring",
+      stiffness: 200,
+      damping: 30,
+      onUpdate: (latest) => window.scrollTo(0, latest),
+    });
+  };
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
       {/* Texte à gauche */}
@@ -24,18 +40,18 @@ export const About: React.FC<{ personal: Personal }> = ({ personal }) => {
         </div>
 
         <div className="mt-8 flex flex-wrap gap-3">
-          <a
-            href="#projects"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[var(--brand)] text-white font-medium hover:opacity-90 transition"
+          <button 
+            onClick={() => smoothScrollTo('#projects')}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[var(--brand)] text-white font-medium hover:opacity-90 transition cursor-pointer"
           >
             Voir mes projets
-          </a>
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-[var(--brand)] text-[var(--brand)] font-medium hover:bg-[var(--brand)] hover:text-white transition"
+          </button>
+          <button 
+            onClick={() => smoothScrollTo('#contact')}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-[var(--brand)] text-[var(--brand)] font-medium hover:bg-[var(--brand)] hover:text-white transition cursor-pointer"
           >
             Me contacter
-          </a>
+          </button>
         </div>
 
         {/* Coordonnées */}

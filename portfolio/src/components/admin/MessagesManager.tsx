@@ -25,7 +25,10 @@ const MessagesManager: React.FC = () => {
   const fetchMessages = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`${API_URL}/messages`);
+      const token = localStorage.getItem('token');
+      const res = await axios.get(`${API_URL}/messages`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
       setMessages(res.data);
     } catch (err) {
       console.error(err);

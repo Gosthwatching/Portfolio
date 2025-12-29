@@ -193,40 +193,19 @@ export const ProjectModal: React.FC<{
                         {project.description}
                       </p>
 
-                      {/* Links */}
-                      {project.links && project.links.length > 0 && (
-                        <div className="flex gap-3 flex-wrap mb-4">
-                          {project.href && (
-                            <a
-                              href={project.href}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 px-3 py-1 text-sm font-medium rounded-md border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] hover:underline"
-                            >
-                              {FaLink && <FaLink className="w-4 h-4" />} Demo
-                            </a>
-                          )}
-                          {project.links.map((link) => {
-                            const Icon =
-                              SiIcons[link.icon as keyof typeof SiIcons] ??
-                              FaIcons[link.icon as keyof typeof FaIcons];
-                            return (
-                              <a
-                                key={link.label}
-                                href={link.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1 px-3 py-1 text-sm font-medium rounded-md border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] hover:underline"
-                              >
-                                {Icon && <Icon className="w-4 h-4" />}
-                                {link.label}
-                              </a>
-                            );
-                          })}
+                      {project.href && (
+                        <div className="mb-4">
+                          <a
+                            href={project.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-[var(--brand)] text-white hover:opacity-90 transition"
+                          >
+                            {FaLink && <FaLink className="w-4 h-4" />} Live Demo
+                          </a>
                         </div>
                       )}
 
-                      {/* Tags */}
                       <div className="mt-3 flex gap-2 flex-wrap">
                         {project.tags?.map((t) => (
                           <span
@@ -239,6 +218,22 @@ export const ProjectModal: React.FC<{
                           </span>
                         ))}
                       </div>
+
+                      {project.techStack && project.techStack.length > 0 && (
+                        <div className="mt-4">
+                          <h4 className="text-sm font-semibold text-[var(--text)] mb-2">Technologies</h4>
+                          <div className="flex gap-2 flex-wrap">
+                            {project.techStack.map((tech: string) => (
+                              <span
+                                key={tech}
+                                className="text-xs px-2 py-1 rounded border border-[var(--border)] bg-[var(--bg)] text-[var(--muted)]"
+                              >
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
 
                       {/* README */}
                       {readme && (

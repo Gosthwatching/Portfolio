@@ -13,6 +13,16 @@ async function get(req, res) {
 
 async function update(req, res) {
   try {
+    // if an avatar image was uploaded, set avatar URL
+    if (req.files && req.files.avatar) {
+      req.body.avatar = `/uploads/${req.files.avatar[0].filename}`;
+    }
+    
+    // if a CV file was uploaded, set cvUrl
+    if (req.files && req.files.cv) {
+      req.body.cvUrl = `/uploads/${req.files.cv[0].filename}`;
+    }
+    
     const result = await repo.update(req.body);
     res.json(result);
   } catch (error) {

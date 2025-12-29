@@ -2,13 +2,11 @@ import React, { useState, useMemo, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import type { SkillGroup } from "../types/portfolio";
 import * as SiIcons from "react-icons/si";
-import { SkillCircle } from "./SkillCircle";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa6";
 
 export const SkillsList: React.FC<{
   skills?: SkillGroup[];
-  isBar?: boolean;
-}> = ({ skills = [], isBar = true }) => {
+}> = ({ skills = [] }) => {
   const groupTitles = useMemo(
     () => skills.map((g) => g.title ?? "Other"),
     [skills]
@@ -186,27 +184,6 @@ export const SkillsList: React.FC<{
                             </div>
                           )}
                         </div>
-
-                        {s.level != null && isBar && (
-                          <div className="mt-3 bg-[var(--border)]/40 h-2 rounded-full overflow-hidden">
-                            <motion.div
-                              initial={{ width: 0 }}
-                              animate={{ width: `${s.level}%` }}
-                              transition={{ duration: 0.8 }}
-                              className="h-2 rounded-full"
-                              style={{
-                                background:
-                                  "linear-gradient(90deg, var(--brand), var(--accent))",
-                              }}
-                            />
-                          </div>
-                        )}
-
-                        {s.level != null && !isBar && (
-                          <div className="mt-3 mx-auto w-24 h-24 sm:w-32 sm:h-32">
-                            <SkillCircle level={s.level} />
-                          </div>
-                        )}
                       </motion.fieldset>
                     );
                   })}

@@ -8,6 +8,8 @@ interface Profile {
   lastName: string;
   title: string;
   bio: string;
+  bio_fr: string;
+  bio_en: string;
   email: string;
   phone: string;
   location: string;
@@ -25,6 +27,8 @@ const ProfileManager: React.FC = () => {
     lastName: '',
     title: '',
     bio: '',
+    bio_fr: '',
+    bio_en: '',
     email: '',
     phone: '',
     location: '',
@@ -35,6 +39,8 @@ const ProfileManager: React.FC = () => {
     avatar: '',
     cvUrl: '',
   });
+  const [avatarFile, setAvatarFile] = useState<File | null>(null);
+  const [cvFile, setCvFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
@@ -64,25 +70,57 @@ const ProfileManager: React.FC = () => {
 
     try {
       const token = localStorage.getItem('token');
+      const fd = new FormData();
+      
+      // Add all profile fields
+      Object.entries(profile).forEach(([key, value]) => {
+        if (key !== '_id' && value) {
+          fd.append(key, value);
+        }
+      });
+      
+      // Add avatar file if selected
+      if (avatarFile) {
+        fd.append('avatar', avatarFile);
+      }
+      
+      // Add CV file if selected
+      if (cvFile) {
+        fd.append('cv', cvFile);
+      }
+      
       if (profile._id) {
         // Update existing profile
         await axios.put(
-          `http://localhost:4000/api/profile/${profile._id}`,
-          profile,
-          { headers: { Authorization: `Bearer ${token}` } }
+          `http://localhost:4000/api/profile`,
+          fd,
+          { 
+            headers: { 
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'multipart/form-data'
+            } 
+          }
         );
         setMessage('✅ Profil mis à jour avec succès !');
+        fetchProfile(); // Reload to get new avatar URL
       } else {
         // Create new profile
         const response = await axios.post(
           'http://localhost:4000/api/profile',
-          profile,
-          { headers: { Authorization: `Bearer ${token}` } }
+          fd,
+          { 
+            headers: { 
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'multipart/form-data'
+            } 
+          }
         );
-        setProfile(response.data);
+        sCvFile(null);
+      setetProfile(response.data);
         setMessage('✅ Profil créé avec succès !');
       }
       
+      setAvatarFile(null);
       setTimeout(() => setMessage(''), 3000);
     } catch (error) {
       console.error('Erreur lors de la sauvegarde:', error);
@@ -152,21 +190,32 @@ const ProfileManager: React.FC = () => {
               name="title"
               value={profile.title}
               onChange={handleChange}
-              placeholder="Ex: Développeur Full Stack"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
 
           <div className="mt-4">
             <label className="block text-sm font-medium text-gray-900 mb-2">
-              Biographie / Présentation
+              Biographie (Français) 🇫🇷
             </label>
             <textarea
-              name="bio"
-              value={profile.bio}
+              name="bio_fr"
+              value={profile.bio_fr}
               onChange={handleChange}
               rows={4}
-              placeholder="Parlez de vous, votre parcours, vos passions..."
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+            />
+          </div>
+
+          <div className="mt-4">
+            <label className="block text-sm font-medium text-gray-900 mb-2">
+              Biographie (Anglais) 🇬🇧
+            </label>
+            <textarea
+              name="bio_en"
+              value={profile.bio_en}
+              onChange={handleChange}
+              rows={4}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
             />
           </div>
@@ -210,7 +259,6 @@ const ProfileManager: React.FC = () => {
                 name="location"
                 value={profile.location}
                 onChange={handleChange}
-                placeholder="Ex: Paris, France"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
@@ -223,7 +271,6 @@ const ProfileManager: React.FC = () => {
                 name="website"
                 value={profile.website}
                 onChange={handleChange}
-                placeholder="https://..."
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
@@ -243,7 +290,6 @@ const ProfileManager: React.FC = () => {
                 name="github"
                 value={profile.github}
                 onChange={handleChange}
-                placeholder="https://github.com/username"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
@@ -256,7 +302,6 @@ const ProfileManager: React.FC = () => {
                 name="linkedin"
                 value={profile.linkedin}
                 onChange={handleChange}
-                placeholder="https://linkedin.com/in/username"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
@@ -269,7 +314,6 @@ const ProfileManager: React.FC = () => {
                 name="twitter"
                 value={profile.twitter}
                 onChange={handleChange}
-                placeholder="https://twitter.com/username"
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
             </div>
@@ -282,38 +326,50 @@ const ProfileManager: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-900 mb-2">
-                Photo de profil (URL)
+                Photo de profil
               </label>
               <input
-                type="url"
-                name="avatar"
-                value={profile.avatar}
-                onChange={handleChange}
-                placeholder="https://..."
+                type="file"
+                accept="image/*"
+                onChange={(e) => setAvatarFile(e.target.files?.[0] || null)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
-              {profile.avatar && (
-                <div className="mt-2">
+              {(avatarFile || profile.avatar) && (
+                <div className="mt-2 flex items-center gap-3">
                   <img
-                    src={profile.avatar}
+                    src={avatarFile ? URL.createObjectURL(avatarFile) : `http://localhost:4000${profile.avatar}`}
                     alt="Preview"
                     className="w-20 h-20 rounded-full object-cover border-2 border-gray-200"
                   />
+                  {avatarFile && (
+                    <span className="text-sm text-gray-600">Nouvelle image sélectionnée</span>
+                  )}
                 </div>
               )}
+              <p className="mt-1 text-xs text-gray-500">
+                Formats acceptés: JPG, PNG, GIF. Taille max: 5MB
+              </p>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-900 mb-2">
-                CV (URL)
+                CV (PDF)
               </label>
               <input
-                type="url"
-                name="cvUrl"
-                value={profile.cvUrl}
-                onChange={handleChange}
-                placeholder="https://..."
+                type="file"
+                accept=".pdf,.doc,.docx"
+                onChange={(e) => setCvFile(e.target.files?.[0] || null)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
+              {(cvFile || profile.cvUrl) && (
+                <div className="mt-2 flex items-center gap-3">
+                  <div className="px-3 py-2 bg-gray-100 rounded-lg text-sm text-gray-700">
+                    📄 {cvFile ? cvFile.name : profile.cvUrl.split('/').pop()}
+                  </div>
+                  {cvFile && (
+                    <span className="text-sm text-gray-600">Nouveau fichier sélectionné</span>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>

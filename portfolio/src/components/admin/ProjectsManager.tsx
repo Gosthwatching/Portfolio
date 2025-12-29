@@ -218,7 +218,6 @@ const ProjectsManager: React.FC = () => {
                 value={form.link}
                 onChange={(e) => setForm({ ...form, link: e.target.value })}
                 className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-                placeholder="https://example.com"
               />
             </div>
 
@@ -229,7 +228,6 @@ const ProjectsManager: React.FC = () => {
                 value={form.github}
                 onChange={(e) => setForm({ ...form, github: e.target.value })}
                 className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-                placeholder="https://github.com/..."
               />
             </div>
 
@@ -240,7 +238,6 @@ const ProjectsManager: React.FC = () => {
                 value={form.live}
                 onChange={(e) => setForm({ ...form, live: e.target.value })}
                 className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-                placeholder="https://demo.example.com"
               />
             </div>
 
@@ -265,7 +262,6 @@ const ProjectsManager: React.FC = () => {
                 onChange={(e) => setTagInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addTag())}
                 className="flex-1 px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-                placeholder="Ajouter un tag..."
               />
               <button
                 type="button"
@@ -300,7 +296,6 @@ const ProjectsManager: React.FC = () => {
                 onChange={(e) => setTechInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addTech())}
                 className="flex-1 px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-                placeholder="Ajouter une technologie..."
               />
               <button
                 type="button"
@@ -365,20 +360,45 @@ const ProjectsManager: React.FC = () => {
                 <div className="flex-1">
                   <h3 className="font-semibold">{p.title}</h3>
                   <p className="text-sm text-gray-600 line-clamp-1">{p.description}</p>
-                  {p.tags && p.tags.length > 0 && (
-                    <div className="flex gap-1 mt-1">
-                      {p.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-2 py-0.5 bg-blue-100 text-blue-800 rounded text-xs"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {p.tags && p.tags.length > 0 && (
+                      <div className="flex gap-1">
+                        {p.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-2 py-0.5 bg-blue-100 text-blue-800 rounded text-xs"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    {p.techStack && p.techStack.length > 0 && (
+                      <div className="flex gap-1">
+                        {p.techStack.map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-2 py-0.5 bg-green-100 text-green-800 rounded text-xs"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-2 items-center">
+                  {p.live && (
+                    <a
+                      href={p.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3 py-1 bg-purple-500 text-white text-sm rounded hover:bg-purple-600 transition"
+                      title="Voir la démo"
+                    >
+                      Live Demo
+                    </a>
+                  )}
                   <button
                     onClick={() => handleEdit(p)}
                     className="p-2 text-blue-600 hover:bg-blue-50 rounded"

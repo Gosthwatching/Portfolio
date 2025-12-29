@@ -10,15 +10,16 @@ import {
 } from "framer-motion";
 import { PiSunDuotone, PiMoonDuotone } from "react-icons/pi";
 import { useTheme } from "../../context/ThemeContext";
+import { useLanguage } from "../../context/LanguageContext";
 import { Link } from "react-router-dom";
 
 type NavLink = { href: string; label: string };
 
-export const Header: React.FC<{ links?: NavLink[]; onTryCLI?: () => void }> = ({
+export const Header: React.FC<{ links?: NavLink[] }> = ({
   links = [],
-  onTryCLI,
 }) => {
   const { dark, toggle } = useTheme();
+  const { language, toggleLanguage } = useLanguage();
   const headerRef = useRef<HTMLElement | null>(null);
 
   const [active, setActive] = useState<string>(links[0]?.href ?? "#about");
@@ -136,11 +137,11 @@ export const Header: React.FC<{ links?: NavLink[]; onTryCLI?: () => void }> = ({
           </div>
 
           <button
-            onClick={onTryCLI}
-            className="btn-light-flare sm:inline-flex items-center gap-2 px-3 py-1.5 rounded text-sm border border-[var(--border)] hover:bg-[var(--border)]/30 transition cursor-pointer"
-            aria-label="Try CLI"
+            onClick={toggleLanguage}
+            className="px-3 py-1.5 rounded text-sm font-medium border border-[var(--border)] hover:bg-[var(--border)]/30 transition cursor-pointer"
+            aria-label="Toggle language"
           >
-            Try CLI
+            {language === 'fr' ? '🇬🇧 EN' : '🇫🇷 FR'}
           </button>
 
           <button

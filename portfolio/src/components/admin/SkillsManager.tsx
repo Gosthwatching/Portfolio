@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { FiEdit2, FiTrash2, FiPlus, FiX } from 'react-icons/fi';
+import { FiEdit2, FiTrash2 } from 'react-icons/fi';
 
 interface Skill {
   _id: string;
   name: string;
   category?: string;
-  level?: string;
   description?: string;
   icon?: string;
 }
@@ -18,7 +17,6 @@ const SkillsManager: React.FC = () => {
   const [form, setForm] = useState<Partial<Skill>>({
     name: '',
     category: '',
-    level: 'intermediate',
     description: '',
     icon: '',
   });
@@ -75,8 +73,7 @@ const SkillsManager: React.FC = () => {
     setForm({
       name: s.name || '',
       category: s.category || '',
-      level: s.level || 'intermediate',
-      description: s.description || '',
+      level: s.level || 'intermediate',      levelPercentage: s.levelPercentage || 50,      description: s.description || '',
       icon: s.icon || '',
     });
     setEditing(s._id);
@@ -102,7 +99,6 @@ const SkillsManager: React.FC = () => {
     setForm({
       name: '',
       category: '',
-      level: 'intermediate',
       description: '',
       icon: '',
     });
@@ -141,22 +137,7 @@ const SkillsManager: React.FC = () => {
                 value={form.category}
                 onChange={(e) => setForm({ ...form, category: e.target.value })}
                 className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-                placeholder="Ex: Frontend, Backend, Tools..."
               />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium mb-1">Niveau</label>
-              <select
-                value={form.level}
-                onChange={(e) => setForm({ ...form, level: e.target.value })}
-                className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-              >
-                <option value="beginner">Débutant</option>
-                <option value="intermediate">Intermédiaire</option>
-                <option value="advanced">Avancé</option>
-                <option value="expert">Expert</option>
-              </select>
             </div>
 
             <div>
@@ -166,7 +147,6 @@ const SkillsManager: React.FC = () => {
                 value={form.icon}
                 onChange={(e) => setForm({ ...form, icon: e.target.value })}
                 className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-                placeholder="Ex: react, nodejs, python..."
               />
             </div>
           </div>
@@ -252,11 +232,6 @@ const SkillsManager: React.FC = () => {
                     {s.category && (
                       <span className="px-2 py-0.5 bg-blue-100 text-blue-800 rounded text-xs">
                         {s.category}
-                      </span>
-                    )}
-                    {s.level && (
-                      <span className="px-2 py-0.5 bg-green-100 text-green-800 rounded text-xs">
-                        {s.level}
                       </span>
                     )}
                   </div>

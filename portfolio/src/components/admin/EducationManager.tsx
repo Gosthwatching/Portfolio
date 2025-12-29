@@ -135,7 +135,6 @@ const EducationManager: React.FC = () => {
                 value={form.degree}
                 onChange={(e) => setForm({ ...form, degree: e.target.value })}
                 className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-                placeholder="Master, Licence, etc."
               />
             </div>
           </div>
@@ -147,7 +146,6 @@ const EducationManager: React.FC = () => {
               value={form.field}
               onChange={(e) => setForm({ ...form, field: e.target.value })}
               className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-              placeholder="Informatique, Sciences, etc."
             />
           </div>
 
@@ -181,7 +179,6 @@ const EducationManager: React.FC = () => {
               onChange={(e) => setForm({ ...form, description: e.target.value })}
               className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
               rows={3}
-              placeholder="Décrivez votre parcours, mentions, etc..."
             />
           </div>
 

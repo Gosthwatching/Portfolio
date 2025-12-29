@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useLanguage } from "../context/LanguageContext";
 
 type ContactState = { name: string; email: string; message: string };
 
@@ -8,6 +9,7 @@ const API_URL = "http://localhost:4000/api";
 export const ContactForm: React.FC<{
   sendTo?: string;
 }> = () => {
+  const { t } = useLanguage();
   const [state, setState] = useState<ContactState>({
     name: "",
     email: "",
@@ -35,15 +37,15 @@ export const ContactForm: React.FC<{
         name: state.name,
         email: state.email,
         content: state.message,
-        subject: `Contact from ${state.name}`,
+        subject: `Message de ${state.name}`,
       });
 
       setSuccess(true);
       setState({ name: "", email: "", message: "" });
     } catch (error) {
-      console.error("Error sending message:", error);
+      console.error("Erreur envoi message:", error);
       setSuccess(false);
-      setErrorMsg("Failed to send message. Please try again.");
+      setErrorMsg("Échec de l'envoi. Réessayez.");
     } finally {
       setLoading(false);
     }
@@ -51,31 +53,31 @@ export const ContactForm: React.FC<{
 
   return (
     <form onSubmit={onSubmit} className="grid gap-3" aria-live="polite">
-      <label htmlFor="name" className="text-sm text-[var(--text)]">Name</label>
+      <label htmlFor="name" className="text-sm text-[var(--text)]">{t('contact.name')}</label>
       <input
         id="name"
         name="name"
-        title="Name"
-        placeholder="Your name"
+        title={t('contact.name')}
+        placeholder={t('contact.placeholder.name')}
         value={state.name}
         onChange={update}
         className="w-full px-3 py-2 rounded-md bg-[var(--surface)] border border-[var(--border)] text-[var(--text)]" />
-      <label htmlFor="email" className="text-sm text-[var(--text)]">Email</label>
+      <label htmlFor="email" className="text-sm text-[var(--text)]">{t('contact.email')}</label>
       <input
         id="email"
         name="email"
         type="email"
-        title="Email"
-        placeholder="Your email"
+        title={t('contact.email')}
+        placeholder={t('contact.placeholder.email')}
         value={state.email}
         onChange={update}
         className="w-full px-3 py-2 rounded-md bg-[var(--surface)] border border-[var(--border)] text-[var(--text)]" />
-      <label htmlFor="message" className="text-sm text-[var(--text)]">Message</label>
+      <label htmlFor="message" className="text-sm text-[var(--text)]">{t('contact.message')}</label>
       <textarea
         id="message"
         name="message"
-        title="Message"
-        placeholder="Your message"
+        title={t('contact.message')}
+        placeholder={t('contact.placeholder.message')}
         value={state.message}
         onChange={update}
         rows={6}
@@ -89,17 +91,17 @@ export const ContactForm: React.FC<{
           disabled={loading}
           className="px-4 py-2 rounded-lg text-white bg-[var(--brand)] disabled:opacity-60"
         >
-          {loading ? "Sending..." : "Send message"}
+          {loading ? t('contact.sending') : t('contact.send')}
         </button>
 
         {success === true && (
           <div className="text-sm text-green-600">
-            Message sent — thank you!
+            {t('contact.success')}
           </div>
         )}
         {success === false && (
           <div className="text-sm text-red-600">
-            Failed to send.
+            {t('contact.error')}
             {errorMsg && (
               <>
                 {" "}
