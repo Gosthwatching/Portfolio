@@ -115,8 +115,8 @@ const ProfileManager: React.FC = () => {
             } 
           }
         );
-        sCvFile(null);
-      setetProfile(response.data);
+        setCvFile(null);
+        setProfile(response.data);
         setMessage('✅ Profil créé avec succès !');
       }
       

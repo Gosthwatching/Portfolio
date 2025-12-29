@@ -73,7 +73,7 @@ const SkillsManager: React.FC = () => {
     setForm({
       name: s.name || '',
       category: s.category || '',
-      level: s.level || 'intermediate',      levelPercentage: s.levelPercentage || 50,      description: s.description || '',
+      description: s.description || '',
       icon: s.icon || '',
     });
     setEditing(s._id);
