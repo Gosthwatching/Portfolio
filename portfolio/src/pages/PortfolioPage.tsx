@@ -135,7 +135,7 @@ const PortfolioContent: React.FC = () => {
           <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 mt-1">
             {t('projects.subtitle')}
           </p>
-          <ProjectsGrid projects={projects} onOpen={setSelected} />
+          <ProjectsGrid projects={projects} />
         </section>
 
         <section id="skills" className="py-8">
