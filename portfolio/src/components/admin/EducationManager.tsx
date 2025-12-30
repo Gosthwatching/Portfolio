@@ -90,7 +90,10 @@ const EducationManager: React.FC = () => {
   const handleDelete = async (id: string) => {
     if (!confirm('Supprimer cette formation ?')) return;
     try {
-      await axios.delete(`${API_URL}/education/${id}`);
+      const token = localStorage.getItem('token');
+      await axios.delete(`${API_URL}/education/${id}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
       fetchEducations();
     } catch (err) {
       console.error(err);

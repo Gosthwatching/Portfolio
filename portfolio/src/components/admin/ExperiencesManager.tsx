@@ -87,7 +87,10 @@ const ExperiencesManager: React.FC = () => {
   const handleDelete = async (id: string) => {
     if (!confirm('Supprimer cette expérience ?')) return;
     try {
-      await axios.delete(`${API_URL}/experiences/${id}`);
+      const token = localStorage.getItem('token');
+      await axios.delete(`${API_URL}/experiences/${id}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
       fetchExperiences();
     } catch (err) {
       console.error(err);
