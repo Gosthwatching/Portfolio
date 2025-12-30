@@ -22,7 +22,6 @@ interface Profile {
 }
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
-const SERVER_URL = import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:4000';
 
 const ProfileManager: React.FC = () => {
   const [profile, setProfile] = useState<Profile>({

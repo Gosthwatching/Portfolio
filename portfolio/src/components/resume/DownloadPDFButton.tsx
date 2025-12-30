@@ -3,7 +3,6 @@ import { FaFileDownload } from 'react-icons/fa';
 import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
-const SERVER_URL = import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:4000';
 
 interface DownloadPDFButtonProps {
   name?: string;

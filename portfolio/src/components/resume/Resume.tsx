@@ -10,7 +10,6 @@ import axios from "axios";
 import type { DateRange } from "../../types/portfolio";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/api";
-const SERVER_URL = import.meta.env.VITE_API_URL?.replace('/api', '') || "http://localhost:4000";
 
 export const Resume: React.FC<{ className?: string }> = ({
   className = "",
