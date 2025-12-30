@@ -25,13 +25,15 @@ async function seedData() {
         position: 'Développeur Full Stack',
         startDate: new Date('2020-01-01'),
         endDate: new Date('2022-12-31'),
-        description: 'Développement d\'applications web avec React et Node.js'
+        description: 'Développement d\'applications web avec React et Node.js',
+        image: 'https://res.cloudinary.com/demo/image/upload/v1690000000/experience1.jpg'
       },
       {
         company: 'Entreprise B',
         position: 'Développeur Frontend',
         startDate: new Date('2023-01-01'),
-        description: 'Création d\'interfaces utilisateur modernes'
+        description: 'Création d\'interfaces utilisateur modernes',
+        image: 'https://res.cloudinary.com/demo/image/upload/v1690000000/experience2.jpg'
       }
     ];
     await Experience.insertMany(experiences);
@@ -52,12 +54,14 @@ async function seedData() {
       {
         title: 'Portfolio Personnel',
         description: 'Site web portfolio avec React et Node.js',
-        link: 'https://github.com/user/portfolio'
+        link: 'https://github.com/user/portfolio',
+        image: 'https://res.cloudinary.com/demo/image/upload/v1690000000/project1.jpg'
       },
       {
         title: 'Application Todo',
         description: 'Application de gestion de tâches',
-        link: 'https://github.com/user/todo-app'
+        link: 'https://github.com/user/todo-app',
+        image: 'https://res.cloudinary.com/demo/image/upload/v1690000000/project2.jpg'
       }
     ];
     await Project.insertMany(projects);

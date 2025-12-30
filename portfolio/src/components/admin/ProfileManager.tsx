@@ -71,7 +71,7 @@ const ProfileManager: React.FC = () => {
     setMessage('');
 
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('admin_token');
       const fd = new FormData();
       
       // Add all profile fields

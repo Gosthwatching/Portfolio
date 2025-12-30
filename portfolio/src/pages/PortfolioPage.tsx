@@ -49,11 +49,16 @@ const PortfolioContent: React.FC = () => {
         if (p.github) links.push({ label: 'GitHub', url: p.github, icon: 'FaGithub' });
         if (p.live) links.push({ label: 'Live Demo', url: p.live, icon: 'FaExternalLinkAlt' });
         
+        // Normalize image URL: if backend returns a relative /uploads path,
+        // prefix it with the API URL so the browser requests the file from the backend.
+        const rawImage = p.imageUrl || '';
+        const normalizedImage = rawImage && rawImage.startsWith('/uploads') ? `${API_URL}${rawImage}` : rawImage;
+
         return {
           id: p._id || `proj-${index}`,
           title: p.title || '',
           description: p.description || '',
-          image: p.imageUrl || '',
+          image: normalizedImage || '',
           href: p.live || p.link || '', // Use live as main href, fallback to link
           tags: p.tags || [],
           links: links,
@@ -92,7 +97,7 @@ const PortfolioContent: React.FC = () => {
     name: `${profile.firstName} ${profile.lastName}`,
     title: profile.title,
     headline: profile.headline,
-    avatar: profile.avatar || '',
+    avatar: profile.avatar && profile.avatar.startsWith('/uploads') ? `${API_URL}${profile.avatar}` : (profile.avatar || ''),
     summary: language === 'fr' ? (profile.bio_fr || profile.bio) : (profile.bio_en || profile.bio),
     contact: {
       email: profile.email,

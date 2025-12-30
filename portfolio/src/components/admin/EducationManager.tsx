@@ -56,7 +56,7 @@ const EducationManager: React.FC = () => {
         endDate: form.endDate || undefined,
       };
 
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('admin_token');
       const config = { headers: { Authorization: `Bearer ${token}` } };
 
       if (editing) {
@@ -90,7 +90,7 @@ const EducationManager: React.FC = () => {
   const handleDelete = async (id: string) => {
     if (!confirm('Supprimer cette formation ?')) return;
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('admin_token');
       await axios.delete(`${API_URL}/education/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });

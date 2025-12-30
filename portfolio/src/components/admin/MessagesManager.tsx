@@ -25,7 +25,7 @@ const MessagesManager: React.FC = () => {
   const fetchMessages = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('admin_token');
       const res = await axios.get(`${API_URL}/messages`, {
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -41,7 +41,7 @@ const MessagesManager: React.FC = () => {
   const handleDelete = async (id: string) => {
     if (!confirm('Supprimer ce message ?')) return;
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('admin_token');
       await axios.delete(`${API_URL}/messages/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });

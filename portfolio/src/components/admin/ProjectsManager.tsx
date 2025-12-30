@@ -70,11 +70,10 @@ const ProjectsManager: React.FC = () => {
       if (form.techStack) fd.append('techStack', JSON.stringify(form.techStack));
       if (imageFile) fd.append('image', imageFile);
 
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('admin_token');
       if (editing) {
         await axios.put(`${API_URL}/projects/${editing}`, fd, {
           headers: { 
-            'Content-Type': 'multipart/form-data',
             'Authorization': `Bearer ${token}`
           },
         });
@@ -82,7 +81,6 @@ const ProjectsManager: React.FC = () => {
       } else {
         await axios.post(`${API_URL}/projects`, fd, {
           headers: { 
-            'Content-Type': 'multipart/form-data',
             'Authorization': `Bearer ${token}`
           },
         });
@@ -118,7 +116,7 @@ const ProjectsManager: React.FC = () => {
     if (!confirm('Êtes-vous sûr de vouloir supprimer ce projet ?')) return;
     try {
       setLoading(true);
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('admin_token');
       await axios.delete(`${API_URL}/projects/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });

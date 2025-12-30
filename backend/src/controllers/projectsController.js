@@ -51,6 +51,8 @@ async function update(req, res) {
   try {
     if (req.file) {
       req.body.imageUrl = req.file.path; // Cloudinary URL
+    } else {
+      delete req.body.imageUrl; // Ne pas écraser l'image existante si pas de nouveau fichier
     }
     // Parser tags et techStack si ce sont des strings JSON
     if (typeof req.body.tags === 'string') {
