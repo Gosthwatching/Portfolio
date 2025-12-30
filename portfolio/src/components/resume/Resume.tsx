@@ -10,6 +10,7 @@ import axios from "axios";
 import type { DateRange } from "../../types/portfolio";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/api";
+const SERVER_URL = import.meta.env.VITE_API_URL?.replace('/api', '') || "http://localhost:4000";
 
 export const Resume: React.FC<{ className?: string }> = ({
   className = "",
@@ -422,7 +423,7 @@ export const Resume: React.FC<{ className?: string }> = ({
           </div>
           <div className="flex items-center gap-3">
             <a
-              href={profile?.cv ? `http://localhost:4000${profile.cv}` : "/resume.pdf"}
+              href={profile?.cv ? `${SERVER_URL}${profile.cv}` : "/resume.pdf"}
               className="inline-flex items-center gap-2 text-sm underline"
               download
             >

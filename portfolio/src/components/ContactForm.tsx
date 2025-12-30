@@ -4,7 +4,7 @@ import { useLanguage } from "../context/LanguageContext";
 
 type ContactState = { name: string; email: string; message: string };
 
-const API_URL = "http://localhost:4000/api";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/api";
 
 export const ContactForm: React.FC<{
   sendTo?: string;

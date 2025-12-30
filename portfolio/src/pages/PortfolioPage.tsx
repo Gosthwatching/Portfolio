@@ -15,6 +15,7 @@ import { DownloadPDFButton } from "../components/resume/DownloadPDFButton";
 import axios from "axios";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/api";
+const SERVER_URL = import.meta.env.VITE_API_URL?.replace('/api', '') || "http://localhost:4000";
 
 const PortfolioContent: React.FC = () => {
   const { t, language } = useLanguage();
@@ -53,7 +54,7 @@ const PortfolioContent: React.FC = () => {
           id: p._id || `proj-${index}`,
           title: p.title || '',
           description: p.description || '',
-          image: p.imageUrl ? `http://localhost:4000${p.imageUrl}` : '', // Correct URL without /api
+          image: p.imageUrl ? `${SERVER_URL}${p.imageUrl}` : '',
           href: p.live || p.link || '', // Use live as main href, fallback to link
           tags: p.tags || [],
           links: links,
@@ -92,7 +93,7 @@ const PortfolioContent: React.FC = () => {
     name: `${profile.firstName} ${profile.lastName}`,
     title: profile.title,
     headline: profile.headline,
-    avatar: profile.avatar ? `http://localhost:4000${profile.avatar}` : '',
+    avatar: profile.avatar ? `${SERVER_URL}${profile.avatar}` : '',
     summary: language === 'fr' ? (profile.bio_fr || profile.bio) : (profile.bio_en || profile.bio),
     contact: {
       email: profile.email,

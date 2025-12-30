@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { FaFileDownload } from 'react-icons/fa';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:4000/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
+const SERVER_URL = import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:4000';
 
 interface DownloadPDFButtonProps {
   name?: string;
@@ -22,7 +23,7 @@ export const DownloadPDFButton: React.FC<DownloadPDFButtonProps> = ({
       try {
         const response = await axios.get(`${API_URL}/profile`);
         if (response.data?.cvUrl) {
-          setCvUrl(`http://localhost:4000${response.data.cvUrl}`);
+          setCvUrl(`${SERVER_URL}${response.data.cvUrl}`);
         }
       } catch (error) {
         console.error('Erreur lors du chargement du profil:', error);

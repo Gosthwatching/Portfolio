@@ -22,6 +22,7 @@ interface Profile {
 }
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
+const SERVER_URL = import.meta.env.VITE_API_URL?.replace('/api', '') || 'http://localhost:4000';
 
 const ProfileManager: React.FC = () => {
   const [profile, setProfile] = useState<Profile>({
@@ -339,7 +340,7 @@ const ProfileManager: React.FC = () => {
               {(avatarFile || profile.avatar) && (
                 <div className="mt-2 flex items-center gap-3">
                   <img
-                    src={avatarFile ? URL.createObjectURL(avatarFile) : `http://localhost:4000${profile.avatar}`}
+                    src={avatarFile ? URL.createObjectURL(avatarFile) : `${SERVER_URL}${profile.avatar}`}
                     alt="Preview"
                     className="w-20 h-20 rounded-full object-cover border-2 border-gray-200"
                   />
