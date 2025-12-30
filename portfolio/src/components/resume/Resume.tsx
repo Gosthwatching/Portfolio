@@ -423,7 +423,7 @@ export const Resume: React.FC<{ className?: string }> = ({
           </div>
           <div className="flex items-center gap-3">
             <a
-              href={profile?.cv ? `${SERVER_URL}${profile.cv}` : "/resume.pdf"}
+              href={profile?.cv || profile?.cvUrl || "/resume.pdf"}
               className="inline-flex items-center gap-2 text-sm underline"
               download
             >

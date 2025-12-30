@@ -22,7 +22,8 @@ async function get(req, res) {
 async function create(req, res) {
   try {
     if (req.file) {
-      req.body.imageUrl = `/uploads/${req.file.filename}`;
+      // Cloudinary renvoie l'URL complète dans req.file.path
+      req.body.imageUrl = req.file.path;
     }
     // Parser tags et techStack si ce sont des strings JSON
     if (typeof req.body.tags === 'string') {
@@ -49,7 +50,7 @@ async function create(req, res) {
 async function update(req, res) {
   try {
     if (req.file) {
-      req.body.imageUrl = `/uploads/${req.file.filename}`;
+      req.body.imageUrl = req.file.path; // Cloudinary URL
     }
     // Parser tags et techStack si ce sont des strings JSON
     if (typeof req.body.tags === 'string') {

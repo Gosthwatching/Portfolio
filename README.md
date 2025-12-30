@@ -55,7 +55,8 @@ Axios             React Icons       React Markdown
 ```
 Node.js           Express.js        MongoDB
 Mongoose          JWT               Bcrypt
-Multer            CORS              Dotenv
+Multer            Cloudinary        CORS
+Dotenv            Streamifier
 ```
 
 ---
@@ -89,14 +90,19 @@ Créer `backend/.env` :
 
 ```env
 PORT=4000
-MONGODB_URI=mongodb://localhost:27017/portfolio
+MONGO_URI=mongodb://localhost:27017/portfolio
 JWT_SECRET=votre_secret_jwt_changez_moi_URGENT
 NODE_ENV=development
+
+# Cloudinary (stockage images - créer compte gratuit sur cloudinary.com)
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
 ```
 
 **Pour MongoDB Atlas :**
 ```env
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/portfolio
+MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/portfolio
 ```
 
 ### 3️⃣ Initialiser la base de données
@@ -204,6 +210,7 @@ node scripts/seedPortfolio.js          # Importer données d'exemple
 | Service | Usage | Plan Gratuit |
 |---------|-------|--------------|
 | **MongoDB Atlas** | Base de données | 512 MB |
+| **Cloudinary** | Stockage images/PDF | 25 GB, 25k transformations |
 | **Render** | Backend API | 750h/mois |
 | **Vercel** | Frontend | Illimité |
 
@@ -218,7 +225,16 @@ node scripts/seedPortfolio.js          # Importer données d'exemple
    mongodb+srv://username:password@cluster.mongodb.net/portfolio
    ```
 
-### 2️⃣ Backend sur Render
+### 2️⃣ Cloudinary (Stockage Images)
+
+1. Créer compte gratuit sur [Cloudinary](https://cloudinary.com)
+2. Dashboard → Account Details
+3. Noter :
+   - **Cloud Name**
+   - **API Key**
+   - **API Secret**
+
+### 3️⃣ Backend sur Render
 
 1. Aller sur [Render](https://render.com)
 2. **New → Web Service**
@@ -231,31 +247,25 @@ node scripts/seedPortfolio.js          # Importer données d'exemple
 
 5. **Variables d'environnement :**
    ```
-   MONGODB_URI=mongodb+srv://...
+   MONGO_URI=mongodb+srv://...
    JWT_SECRET=changez_moi_secret_aleatoire
    PORT=4000
    NODE_ENV=production
+   CLOUDINARY_CLOUD_NAME=your_cloud_name
+   CLOUDINARY_API_KEY=your_api_key
+   CLOUDINARY_API_SECRET=your_api_secret
    ```
 
 6. Déployer → Noter l'URL : `https://votre-app.onrender.com`
 
-### 3️⃣ Frontend sur Vercel
+**⚠️ Important Render :** Le plan gratuit met le serveur en veille après 15 minutes d'inactivité. Premier chargement peut prendre 30-60 secondes.
+
+### 4️⃣ Frontend sur Vercel
 
 **Modifier d'abord l'URL de l'API :**
 
-`portfolio/src/config/api.ts` :
-```typescript
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
-export default API_URL;
-```
-
-`portfolio/src/pages/PortfolioPage.tsx` (ligne 18) :
-```typescript
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/api";
-```
-
-**Créer `portfolio/.env.production` :**
-```
+Créer `portfolio/.env.production` :
+```env
 VITE_API_URL=https://votre-app.onrender.com/api
 ```
 
@@ -271,11 +281,34 @@ npm i -g vercel
 vercel
 ```
 
-**Ou via GitHub :**
+**Ou via GitHub (recommandé) :**
 1. Push sur GitHub
 2. Importer sur [Vercel](https://vercel.com)
-3. Root Directory : `portfolio`
-4. Variables : `VITE_API_URL=https://votre-app.onrender.com/api`
+3. **Configuration importante :**
+   - **Framework Preset** : Vite
+   - **Root Directory** : `portfolio` ⚠️
+   - **Environment Variables** : 
+     - `VITE_API_URL` = `https://votre-app.onrender.com/api`
+4. Deploy
+
+**URL finale :** Vercel vous donnera une URL type `https://votre-portfolio.vercel.app`
+
+---
+
+## 🎨 Configuration Cloudinary
+
+Les images et CV sont maintenant stockés sur Cloudinary (stockage cloud permanent) au lieu du système de fichiers local de Render qui est éphémère.
+
+**Dossiers Cloudinary créés automatiquement :**
+- `portfolio/projects` - Images de projets (redimensionnées 1200x800)
+- `portfolio/avatars` - Photos de profil (400x400 crop centré visage)
+- `portfolio/cv` - Fichiers PDF des CV
+
+**Avantages :**
+- ✅ Stockage permanent (pas de perte au redémarrage serveur)
+- ✅ CDN mondial (chargement ultra-rapide)
+- ✅ Transformations automatiques (resize, crop, optimisation)
+- ✅ 25 GB gratuits
 
 ---
 

@@ -54,7 +54,7 @@ const PortfolioContent: React.FC = () => {
           id: p._id || `proj-${index}`,
           title: p.title || '',
           description: p.description || '',
-          image: p.imageUrl ? `${SERVER_URL}${p.imageUrl}` : '',
+          image: p.imageUrl || '',
           href: p.live || p.link || '', // Use live as main href, fallback to link
           tags: p.tags || [],
           links: links,
@@ -93,7 +93,7 @@ const PortfolioContent: React.FC = () => {
     name: `${profile.firstName} ${profile.lastName}`,
     title: profile.title,
     headline: profile.headline,
-    avatar: profile.avatar ? `${SERVER_URL}${profile.avatar}` : '',
+    avatar: profile.avatar || '',
     summary: language === 'fr' ? (profile.bio_fr || profile.bio) : (profile.bio_en || profile.bio),
     contact: {
       email: profile.email,

@@ -1,6 +1,20 @@
 const repo = require('../repositories/profile');
-const path = require('path');
-const fs = require('fs');
+const { cloudinary } = require('../config/cloudinary');
+const streamifier = require('streamifier');
+
+// Fonction helper pour uploader vers Cloudinary
+const uploadToCloudinary = (buffer, folder, resourceType = 'image') => {
+  return new Promise((resolve, reject) => {
+    const stream = cloudinary.uploader.upload_stream(
+      { folder, resource_type: resourceType },
+      (error, result) => {
+        if (error) reject(error);
+        else resolve(result);
+      }
+    );
+    streamifier.createReadStream(buffer).pipe(stream);
+  });
+};
 
 async function get(req, res) {
   try {
@@ -13,14 +27,24 @@ async function get(req, res) {
 
 async function update(req, res) {
   try {
-    // if an avatar image was uploaded, set avatar URL
-    if (req.files && req.files.avatar) {
-      req.body.avatar = `/uploads/${req.files.avatar[0].filename}`;
+    // if an avatar image was uploaded
+    if (req.files && req.files.avatar && req.files.avatar[0]) {
+      const result = await uploadToCloudinary(
+        req.files.avatar[0].buffer,
+        'portfolio/avatars',
+        'image'
+      );
+      req.body.avatar = result.secure_url;
     }
     
-    // if a CV file was uploaded, set cvUrl
-    if (req.files && req.files.cv) {
-      req.body.cvUrl = `/uploads/${req.files.cv[0].filename}`;
+    // if a CV file was uploaded
+    if (req.files && req.files.cv && req.files.cv[0]) {
+      const result = await uploadToCloudinary(
+        req.files.cv[0].buffer,
+        'portfolio/cv',
+        'raw'
+      );
+      req.body.cvUrl = result.secure_url;
     }
     
     const result = await repo.update(req.body);
@@ -35,9 +59,14 @@ async function uploadCV(req, res) {
     if (!req.file) {
       return res.status(400).json({ message: 'No file uploaded' });
     }
-    const cvUrl = '/uploads/' + req.file.filename;
-    const result = await repo.update({ cvUrl });
-    res.json(result);
+    const result = await uploadToCloudinary(
+      req.file.buffer,
+      'portfolio/cv',
+      'raw'
+    );
+    const cvUrl = result.secure_url;
+    const updated = await repo.update({ cvUrl });
+    res.json(updated);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

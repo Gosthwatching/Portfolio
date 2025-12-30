@@ -340,7 +340,7 @@ const ProfileManager: React.FC = () => {
               {(avatarFile || profile.avatar) && (
                 <div className="mt-2 flex items-center gap-3">
                   <img
-                    src={avatarFile ? URL.createObjectURL(avatarFile) : `${SERVER_URL}${profile.avatar}`}
+                    src={avatarFile ? URL.createObjectURL(avatarFile) : profile.avatar}
                     alt="Preview"
                     className="w-20 h-20 rounded-full object-cover border-2 border-gray-200"
                   />

@@ -23,7 +23,7 @@ export const DownloadPDFButton: React.FC<DownloadPDFButtonProps> = ({
       try {
         const response = await axios.get(`${API_URL}/profile`);
         if (response.data?.cvUrl) {
-          setCvUrl(`${SERVER_URL}${response.data.cvUrl}`);
+          setCvUrl(response.data.cvUrl);
         }
       } catch (error) {
         console.error('Erreur lors du chargement du profil:', error);
