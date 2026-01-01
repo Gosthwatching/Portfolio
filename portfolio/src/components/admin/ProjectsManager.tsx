@@ -173,7 +173,7 @@ const ProjectsManager: React.FC = () => {
     <div className="space-y-6">
       {/* Formulaire */}
       <div className="bg-white rounded-lg shadow p-6">
-        <h2 className="text-xl font-bold mb-4">
+        <h2 className="text-xl font-bold mb-4 text-gray-900">
           {editing ? 'Modifier le projet' : 'Ajouter un projet'}
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -183,7 +183,7 @@ const ProjectsManager: React.FC = () => {
               type="text"
               value={form.title}
               onChange={(e) => setForm({ ...form, title: e.target.value })}
-              className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               required
             />
           </div>
@@ -193,7 +193,7 @@ const ProjectsManager: React.FC = () => {
             <textarea
               value={form.description}
               onChange={(e) => setForm({ ...form, description: e.target.value })}
-              className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               rows={2}
             />
           </div>
@@ -203,29 +203,18 @@ const ProjectsManager: React.FC = () => {
             <textarea
               value={form.longDescription}
               onChange={(e) => setForm({ ...form, longDescription: e.target.value })}
-              className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               rows={4}
             />
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-900 mb-1">Lien du projet</label>
-              <input
-                type="url"
-                value={form.link}
-                onChange={(e) => setForm({ ...form, link: e.target.value })}
-                className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-
             <div>
               <label className="block text-sm font-medium text-gray-900 mb-1">GitHub</label>
               <input
                 type="url"
                 value={form.github}
                 onChange={(e) => setForm({ ...form, github: e.target.value })}
-                className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               />
             </div>
 
@@ -235,7 +224,7 @@ const ProjectsManager: React.FC = () => {
                 type="url"
                 value={form.live}
                 onChange={(e) => setForm({ ...form, live: e.target.value })}
-                className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               />
             </div>
 
@@ -245,7 +234,7 @@ const ProjectsManager: React.FC = () => {
                 type="file"
                 accept="image/*"
                 onChange={(e) => setImageFile(e.target.files?.[0] || null)}
-                className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               />
             </div>
           </div>
@@ -259,7 +248,7 @@ const ProjectsManager: React.FC = () => {
                 value={tagInput}
                 onChange={(e) => setTagInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addTag())}
-                className="flex-1 px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               />
               <button
                 type="button"
@@ -293,7 +282,7 @@ const ProjectsManager: React.FC = () => {
                 value={techInput}
                 onChange={(e) => setTechInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addTech())}
-                className="flex-1 px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               />
               <button
                 type="button"

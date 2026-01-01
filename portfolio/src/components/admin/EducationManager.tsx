@@ -108,14 +108,27 @@ const EducationManager: React.FC = () => {
 
   const formatDate = (date?: string) => {
     if (!date) return 'Présent';
-    return new Date(date).toLocaleDateString('fr-FR', { month: 'short', year: 'numeric' });
+    // Support YYYY-MM-DD, YYYY-MM, YYYY
+    const parts = date.split('-');
+    let month = '01', year = '';
+    if (parts.length === 3) {
+      year = parts[0].slice(-2);
+      month = parts[1];
+    } else if (parts.length === 2) {
+      year = parts[0].slice(-2);
+      month = parts[1];
+    } else if (parts.length === 1) {
+      year = parts[0].slice(-2);
+      month = '01';
+    }
+    return `${month}/${year}`;
   };
 
   return (
     <div className="space-y-6">
       {/* Formulaire */}
       <div className="bg-white rounded-lg shadow p-6">
-        <h2 className="text-xl font-bold mb-4">
+        <h2 className="text-xl font-bold mb-4 text-gray-900">
           {editing ? 'Modifier la formation' : 'Ajouter une formation'}
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -126,7 +139,7 @@ const EducationManager: React.FC = () => {
                 type="text"
                 value={form.school}
                 onChange={(e) => setForm({ ...form, school: e.target.value })}
-                className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                 required
               />
             </div>
@@ -137,7 +150,7 @@ const EducationManager: React.FC = () => {
                 type="text"
                 value={form.degree}
                 onChange={(e) => setForm({ ...form, degree: e.target.value })}
-                className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               />
             </div>
           </div>
@@ -148,7 +161,7 @@ const EducationManager: React.FC = () => {
               type="text"
               value={form.field}
               onChange={(e) => setForm({ ...form, field: e.target.value })}
-              className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
             />
           </div>
 
@@ -159,7 +172,7 @@ const EducationManager: React.FC = () => {
                 type="date"
                 value={form.startDate}
                 onChange={(e) => setForm({ ...form, startDate: e.target.value })}
-                className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               />
             </div>
 
@@ -169,7 +182,7 @@ const EducationManager: React.FC = () => {
                 type="date"
                 value={form.endDate}
                 onChange={(e) => setForm({ ...form, endDate: e.target.value })}
-                className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               />
               <p className="text-xs text-gray-500 mt-1">Laisser vide si en cours</p>
             </div>
@@ -180,7 +193,7 @@ const EducationManager: React.FC = () => {
             <textarea
               value={form.description}
               onChange={(e) => setForm({ ...form, description: e.target.value })}
-              className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               rows={3}
             />
           </div>

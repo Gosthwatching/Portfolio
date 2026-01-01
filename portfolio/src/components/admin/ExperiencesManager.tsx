@@ -104,8 +104,27 @@ const ExperiencesManager: React.FC = () => {
   };
 
   const formatDate = (date?: string) => {
-    if (!date) return 'Présent';
-    return new Date(date).toLocaleDateString('fr-FR', { month: 'short', year: 'numeric' });
+    if (!date || date === '' || date === undefined || date === null) return 'À ce jour';
+    const parts = date.split('-');
+    let month = '', year = '';
+    if (parts.length === 3) {
+      year = parts[0].slice(-2);
+      month = parts[1];
+    } else if (parts.length === 2) {
+      year = parts[0].slice(-2);
+      month = parts[1];
+    } else if (parts.length === 1 && parts[0]) {
+      year = parts[0].slice(-2);
+      month = '';
+    } else {
+      return 'À ce jour';
+    }
+    // Vérifie que le mois est entre 01 et 12 et que l'année est numérique
+    if (!year || isNaN(Number(year))) return 'À ce jour';
+    if (!month || isNaN(Number(month)) || Number(month) < 1 || Number(month) > 12) {
+      return year ? `/${year}` : 'À ce jour';
+    }
+    return `${month.padStart(2, '0')}/${year}`;
   };
 
   return (

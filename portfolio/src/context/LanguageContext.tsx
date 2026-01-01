@@ -27,11 +27,11 @@ const translations = {
     
     // Projects section
     'projects.title': 'Projets',
-    'projects.subtitle': 'Découvrez mes réalisations — cliquez pour plus de détails',
+    'projects.subtitle': 'Découvrez mes réalisations — cliquez sur "Live Demo" pour lancer le projet',
     
     // Skills section
     'skills.title': 'Compétences',
-    'skills.subtitle': 'Technologies et outils que je maîtrise',
+    'skills.subtitle': 'Technologies, outils et langues que je maîtrise',
     
     // Contact section
     'contact.title': 'Contact',

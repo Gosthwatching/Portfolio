@@ -49,7 +49,7 @@ const SkillsManager: React.FC = () => {
 
     try {
       setLoading(true);
-      const token = localStorage.getItem('admin_token');
+      const token = localStorage.getItem('token');
       const config = { headers: { Authorization: `Bearer ${token}` } };
       
       if (editing) {
@@ -83,7 +83,7 @@ const SkillsManager: React.FC = () => {
     if (!confirm('Êtes-vous sûr de vouloir supprimer cette compétence ?')) return;
     try {
       setLoading(true);
-      const token = localStorage.getItem('admin_token');
+      const token = localStorage.getItem('token');
       const config = { headers: { Authorization: `Bearer ${token}` } };
       await axios.delete(`${API_URL}/skills/${id}`, config);
       fetchSkills();
