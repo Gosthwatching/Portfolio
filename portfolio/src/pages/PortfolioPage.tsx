@@ -11,7 +11,6 @@ import { About } from "../components/About";
 import type { Project } from "../types/portfolio";
 import { ProjectModal } from "../components/ProjectModal";
 import { ScrollProgressBar } from "../components/shared/ScrollProgressBar";
-import { DownloadPDFButton } from "../components/resume/DownloadPDFButton";
 import axios from "axios";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/api";
