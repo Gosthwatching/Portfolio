@@ -1,8 +1,9 @@
-# 🚀 Portfolio Professionnel Full-Stack
 
-> Portfolio moderne avec CMS intégré et gestion de contenu dynamique
+# 🚀 Portfolio Professionnel Full-Stack (Projet Personnel)
 
-Portfolio professionnel complet avec interface d'administration, développé en React/TypeScript et Node.js/MongoDB. Gérez votre contenu facilement via un dashboard sécurisé et présentez vos projets de manière professionnelle.
+> Ceci est le portfolio personnel de Yarno Chedemail. Il n'est pas destiné à être téléchargé, adapté ou réutilisé par d'autres personnes.
+
+Ce projet a été développé sur-mesure pour mon usage personnel. Merci de ne pas le cloner, ni l'utiliser comme base pour vos propres projets. Toute reproduction, adaptation ou diffusion sans autorisation est interdite.
 
 ---
 
@@ -23,8 +24,8 @@ Ce projet est basé sur un template créé par [Satya Subudhi](https://github.co
 - ✅ Page d'accueil avec profil personnalisé (bio bilingue FR/EN)
 - ✅ Galerie de projets interactive avec modales détaillées
 - ✅ Visualisation des compétences par catégories
-- ✅ Section expériences professionnelles
-- ✅ Section formation académique
+- ✅ Section expériences professionnelles multilingue (description_fr, description_en)
+- ✅ Section formation académique multilingue (description_fr, description_en)
 - ✅ Page CV/Resume téléchargeable en PDF
 - ✅ Formulaire de contact avec stockage en base
 - ✅ Mode sombre/clair avec animations fluides
@@ -35,8 +36,8 @@ Ce projet est basé sur un template créé par [Satya Subudhi](https://github.co
 - ✅ Gestion du profil (avatar, bio, réseaux sociaux, CV)
 - ✅ CRUD Projets (images, tags, technologies, liens GitHub/Live)
 - ✅ CRUD Compétences (catégories, niveaux)
-- ✅ CRUD Expériences professionnelles
-- ✅ CRUD Formations académiques
+- ✅ CRUD Expériences professionnelles (description_fr, description_en)
+- ✅ CRUD Formations académiques (description_fr, description_en)
 - ✅ Consultation des messages de contact
 - ✅ Upload de fichiers (images, PDF)
 
@@ -112,12 +113,6 @@ cd backend
 node scripts/seedAdmin.js
 ```
 
-**Identifiants admin par défaut :**
-- Email : `admin@portfolio.com`
-- Mot de passe : `admin123`
-
-⚠️ **IMPORTANT** : Changez ces identifiants après la première connexion !
-
 ### 4️⃣ Lancer le projet
 
 **Terminal 1 - Backend :**
@@ -135,7 +130,7 @@ npm run dev
 → Site : `http://localhost:5173`
 
 **Accéder au dashboard :**
-`http://localhost:5173/#/login`
+`http://localhost:5173/#/admin/login`
 
 ---
 
@@ -339,8 +334,8 @@ Les images et CV sont maintenant stockés sur Cloudinary (stockage cloud permane
 GET  /api/profile          # Récupérer profil
 GET  /api/projects         # Liste projets
 GET  /api/skills           # Liste compétences
-GET  /api/experiences      # Liste expériences
-GET  /api/education        # Liste formations
+GET  /api/experiences      # Liste expériences (description_fr, description_en)
+GET  /api/education        # Liste formations (description_fr, description_en)
 POST /api/messages         # Envoyer message contact
 ```
 
@@ -384,17 +379,16 @@ DELETE /api/messages/:id          # Supprimer message
 
 ---
 
+
 ## 📄 Licence
 
-Projet éducatif - Libre d'utilisation
+Ce projet est strictement personnel. Toute réutilisation, adaptation ou diffusion sans mon accord est interdite.
 
 ---
 
 ## 👤 Auteur
 
-**Votre Nom**  
-Portfolio : [Votre URL]  
-GitHub : [@Gosthwatching](https://github.com/Gosthwatching)
+Yarno Chedemail 
 
 ---
 
@@ -407,4 +401,3 @@ GitHub : [@Gosthwatching](https://github.com/Gosthwatching)
 
 ---
 
-**Fait avec ❤️ et beaucoup de ☕**

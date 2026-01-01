@@ -139,7 +139,7 @@ const ProfileManager: React.FC = () => {
           <FiUser className="text-3xl text-blue-600" />
           <div>
             <h2 className="text-2xl font-bold text-gray-900">Mon Profil</h2>
-            <p className="text-sm text-gray-500">Gérez vos informations personnelles et professionnelles</p>
+            <p className="text-sm text-gray-500">Gérerinformations personnelles et professionnelles</p>
           </div>
         </div>
       </div>

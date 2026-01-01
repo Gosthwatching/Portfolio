@@ -21,6 +21,7 @@ async function get(req, res) {
 
 async function create(req, res) {
   try {
+    console.log('BODY:', req.body);
     const result = await repo.create(req.body);
     res.status(201).json(result);
   } catch (error) {

@@ -7,6 +7,8 @@ const experienceSchema = new mongoose.Schema({
   startDate: Date,
   endDate: Date,
   description: String,
+  description_fr: String,
+  description_en: String,
 }, { timestamps: true });
 
 module.exports = mongoose.model('Experience', experienceSchema);

@@ -66,11 +66,11 @@ const translations = {
     
     // Projects section
     'projects.title': 'Projects',
-    'projects.subtitle': 'Discover my work — click for more details',
+    'projects.subtitle': 'Discover my work — click on the button "Live Demo" for more details',
     
     // Skills section
     'skills.title': 'Skills',
-    'skills.subtitle': 'Technologies and tools I master',
+    'skills.subtitle': 'Technologies, tools and languages I master',
     
     // Contact section
     'contact.title': 'Contact',
@@ -85,7 +85,7 @@ const translations = {
     'contact.placeholder.name': 'Your name',
     'contact.placeholder.email': 'your.email@example.com',
     'contact.placeholder.message': 'Describe your project or just say hello...',
-    'contact.downloadCV': 'Download my CV',
+    'contact.downloadCV': 'Download my remsume',
     
     // Footer
     'footer.template': 'Template made by',

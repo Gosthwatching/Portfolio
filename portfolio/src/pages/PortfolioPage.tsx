@@ -181,8 +181,12 @@ const PortfolioContent: React.FC = () => {
                       {exp.current ? (language === 'fr' ? 'Présent' : 'Present') : new Date(exp.endDate).toLocaleDateString(language === 'fr' ? 'fr-FR' : 'en-US', { month: 'short', year: 'numeric' })}
                     </div>
                   </div>
-                  {exp.description && (
-                    <p className="text-sm text-[var(--text)] leading-relaxed">{exp.description}</p>
+                  {(language === 'fr' && exp.description_fr) ? (
+                    <p className="text-sm text-[var(--text)] leading-relaxed">{exp.description_fr}</p>
+                  ) : (language === 'en' && exp.description_en) ? (
+                    <p className="text-sm text-[var(--text)] leading-relaxed">{exp.description_en}</p>
+                  ) : (
+                    exp.description && <p className="text-sm text-[var(--text)] leading-relaxed">{exp.description}</p>
                   )}
                 </div>
               ))}
@@ -220,8 +224,12 @@ const PortfolioContent: React.FC = () => {
                       {ed.current ? (language === 'fr' ? 'En cours' : 'Current') : new Date(ed.endDate).getFullYear()}
                     </div>
                   </div>
-                  {ed.description && (
-                    <p className="text-sm text-[var(--text)] mt-3 leading-relaxed">{ed.description}</p>
+                  {(language === 'fr' && ed.description_fr) ? (
+                    <p className="text-sm text-[var(--text)] mt-3 leading-relaxed">{ed.description_fr}</p>
+                  ) : (language === 'en' && ed.description_en) ? (
+                    <p className="text-sm text-[var(--text)] mt-3 leading-relaxed">{ed.description_en}</p>
+                  ) : (
+                    ed.description && <p className="text-sm text-[var(--text)] mt-3 leading-relaxed">{ed.description}</p>
                   )}
                 </div>
               ))}
@@ -243,10 +251,11 @@ const PortfolioContent: React.FC = () => {
 
             <div className="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--border)] flex flex-col justify-center items-center">
               <div className="text-sm font-medium mb-2">{t('contact.downloadCV')}</div>
-              <DownloadPDFButton 
-                name={profile?.name || 'Portfolio'} 
-                variant="link"
-              />
+              <a href="/CV_Yarno_Chedemail.pdf" download>
+                <span className="block px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition disabled:opacity-50 disabled:cursor-not-allowed">
+                  {language === 'fr' ? 'ici' : 'here'}
+                </span>
+              </a>
             </div>
           </div>
         </section>

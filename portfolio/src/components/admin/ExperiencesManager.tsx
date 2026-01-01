@@ -9,6 +9,8 @@ interface Experience {
   startDate?: string;
   endDate?: string;
   description?: string;
+  description_fr?: string;
+  description_en?: string;
 }
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
@@ -21,6 +23,8 @@ const ExperiencesManager: React.FC = () => {
     startDate: '',
     endDate: '',
     description: '',
+    description_fr: '',
+    description_en: '',
   });
   const [editing, setEditing] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -80,6 +84,8 @@ const ExperiencesManager: React.FC = () => {
       startDate: exp.startDate ? exp.startDate.split('T')[0] : '',
       endDate: exp.endDate ? exp.endDate.split('T')[0] : '',
       description: exp.description || '',
+      description_fr: exp.description_fr || '',
+      description_en: exp.description_en || '',
     });
     setEditing(exp._id);
   };
@@ -99,12 +105,12 @@ const ExperiencesManager: React.FC = () => {
   };
 
   const resetForm = () => {
-    setForm({ company: '', position: '', startDate: '', endDate: '', description: '' });
+    setForm({ company: '', position: '', startDate: '', endDate: '', description: '', description_fr: '', description_en: '' });
     setEditing(null);
   };
 
   const formatDate = (date?: string) => {
-    if (!date || date === '' || date === undefined || date === null) return 'À ce jour';
+    if (!date || date === '' || date === undefined || date === null) return 'En cours';
     const parts = date.split('-');
     let month = '', year = '';
     if (parts.length === 3) {
@@ -117,12 +123,12 @@ const ExperiencesManager: React.FC = () => {
       year = parts[0].slice(-2);
       month = '';
     } else {
-      return 'À ce jour';
+      return 'En cours';
     }
     // Vérifie que le mois est entre 01 et 12 et que l'année est numérique
-    if (!year || isNaN(Number(year))) return 'À ce jour';
+    if (!year || isNaN(Number(year))) return 'En cours';
     if (!month || isNaN(Number(month)) || Number(month) < 1 || Number(month) > 12) {
-      return year ? `/${year}` : 'À ce jour';
+      return year ? `/${year}` : 'En cours';
     }
     return `${month.padStart(2, '0')}/${year}`;
   };
@@ -182,12 +188,21 @@ const ExperiencesManager: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-900 mb-1">Description</label>
+            <label className="block text-sm font-medium text-gray-900 mb-1">Description (Français) 🇫🇷</label>
             <textarea
-              value={form.description}
-              onChange={(e) => setForm({ ...form, description: e.target.value })}
+              value={form.description_fr}
+              onChange={(e) => setForm({ ...form, description_fr: e.target.value })}
               className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
-              rows={4}
+              rows={3}
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-900 mb-1">Description (Anglais) 🇬🇧</label>
+            <textarea
+              value={form.description_en}
+              onChange={(e) => setForm({ ...form, description_en: e.target.value })}
+              className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+              rows={3}
             />
           </div>
 
@@ -230,8 +245,11 @@ const ExperiencesManager: React.FC = () => {
                     <p className="text-xs text-gray-500 mt-1">
                       {formatDate(exp.startDate)} - {formatDate(exp.endDate)}
                     </p>
-                    {exp.description && (
-                      <p className="text-sm text-gray-700 mt-2">{exp.description}</p>
+                    {exp.description_fr && (
+                      <p className="text-sm text-gray-700 mt-2">Description (FR) : {exp.description_fr}</p>
+                    )}
+                    {exp.description_en && (
+                      <p className="text-sm text-gray-700 mt-2">Description (EN) : {exp.description_en}</p>
                     )}
                   </div>
                   <div className="flex gap-2 ml-4">
