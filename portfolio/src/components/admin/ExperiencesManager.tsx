@@ -188,7 +188,7 @@ const ExperiencesManager: React.FC = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-900 mb-1">Description (Français) 🇫🇷</label>
+            <label className="block text-sm font-medium text-gray-900 mb-1">Description (Français)</label>
             <textarea
               value={form.description_fr}
               onChange={(e) => setForm({ ...form, description_fr: e.target.value })}
@@ -197,7 +197,7 @@ const ExperiencesManager: React.FC = () => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-900 mb-1">Description (Anglais) 🇬🇧</label>
+            <label className="block text-sm font-medium text-gray-900 mb-1">Description (Anglais)</label>
             <textarea
               value={form.description_en}
               onChange={(e) => setForm({ ...form, description_en: e.target.value })}

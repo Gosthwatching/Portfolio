@@ -43,7 +43,9 @@ export const ProjectCard: React.FC<{
           {project.isUnderDevelopment && (
             <span className="text-xs text-[var(--muted)] pl-2">Under Development</span>
           )}
-          <p className="text-sm text-[var(--muted)] mt-1 line-clamp-2">{project.description}</p>
+          {project.description && (
+            <p className="text-sm text-[var(--muted)] mt-1 line-clamp-2">{project.description}</p>
+          )}
           {project.href && (
             <div className="mt-3">
               <a

@@ -168,6 +168,11 @@ export const SkillsList: React.FC<{
                         <div className="flex items-start justify-between gap-3">
                           <div>
                             <div className="font-medium text-sm">{s.name}</div>
+                                                        {s.description && (
+                                                          <div className="text-xs text-gray-500 mt-1">
+                                                            {s.description}
+                                                          </div>
+                                                        )}
                             <div className="text-xs text-slate-400 mt-1">
                               {s.years
                                 ? `${s.years} yr${s.years > 1 ? "s" : ""}`

@@ -7,6 +7,8 @@ interface Skill {
   name: string;
   category?: string;
   description?: string;
+  description_fr?: string;
+  description_en?: string;
   icon?: string;
 }
 
@@ -18,6 +20,8 @@ const SkillsManager: React.FC = () => {
     name: '',
     category: '',
     description: '',
+    description_fr: '',
+    description_en: '',
     icon: '',
   });
   const [editing, setEditing] = useState<string | null>(null);
@@ -74,6 +78,8 @@ const SkillsManager: React.FC = () => {
       name: s.name || '',
       category: s.category || '',
       description: s.description || '',
+      description_fr: s.description_fr || '',
+      description_en: s.description_en || '',
       icon: s.icon || '',
     });
     setEditing(s._id);
@@ -100,6 +106,8 @@ const SkillsManager: React.FC = () => {
       name: '',
       category: '',
       description: '',
+      description_fr: '',
+      description_en: '',
       icon: '',
     });
     setEditing(null);
@@ -150,12 +158,20 @@ const SkillsManager: React.FC = () => {
               />
             </div>
           </div>
-
           <div>
-            <label className="block text-sm font-medium mb-1">Description</label>
+            <label className="block text-sm font-medium mb-1">Description (Français)</label>
             <textarea
-              value={form.description}
-              onChange={(e) => setForm({ ...form, description: e.target.value })}
+              value={form.description_fr}
+              onChange={(e) => setForm({ ...form, description_fr: e.target.value })}
+              className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
+              rows={2}
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium mb-1">Description (Anglais)</label>
+            <textarea
+              value={form.description_en}
+              onChange={(e) => setForm({ ...form, description_en: e.target.value })}
               className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500"
               rows={2}
             />
@@ -235,8 +251,14 @@ const SkillsManager: React.FC = () => {
                       </span>
                     )}
                   </div>
-                  {s.description && (
-                    <p className="text-sm text-gray-600 mt-1">{s.description}</p>
+                  {(s.description_fr || s.description_en || s.description) && (
+                    <>
+                      {s.description_fr && <p className="text-sm text-gray-600 mt-1">FR: {s.description_fr}</p>}
+                      {s.description_en && <p className="text-sm text-gray-600 mt-1">EN: {s.description_en}</p>}
+                      {!s.description_fr && !s.description_en && s.description && (
+                        <p className="text-sm text-gray-600 mt-1">{s.description}</p>
+                      )}
+                    </>
                   )}
                 </div>
                 <div className="flex gap-2">

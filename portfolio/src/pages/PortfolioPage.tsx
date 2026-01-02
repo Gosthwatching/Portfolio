@@ -56,12 +56,18 @@ const PortfolioContent: React.FC = () => {
         return {
           id: p._id || `proj-${index}`,
           title: p.title || '',
-          description: p.description || '',
+          description:
+            (language === 'fr' && (p.description_fr || p.description)) ||
+            (language === 'en' && (p.description_en || p.description)) ||
+            p.description || '',
           image: normalizedImage || '',
           href: p.live || p.link || '', // Use live as main href, fallback to link
           tags: p.tags || [],
           links: links,
-          longDescription: p.longDescription || p.description || '',
+          longDescription:
+            (language === 'fr' && (p.longDescription_fr || p.longDescription || p.description_fr || p.description)) ||
+            (language === 'en' && (p.longDescription_en || p.longDescription || p.description_en || p.description)) ||
+            p.longDescription || p.description || '',
           techStack: p.techStack || [],
         };
       });
@@ -75,6 +81,10 @@ const PortfolioContent: React.FC = () => {
         acc[category].push({
           name: skill.name,
           icon: skill.icon || skill.name.toLowerCase().replace(/\s+/g, ''),
+          description:
+            (language === 'fr' && (skill.description_fr || skill.description)) ||
+            (language === 'en' && (skill.description_en || skill.description)) ||
+            skill.description || '',
         });
         return acc;
       }, {});
@@ -250,11 +260,17 @@ const PortfolioContent: React.FC = () => {
 
             <div className="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--border)] flex flex-col justify-center items-center">
               <div className="text-sm font-medium mb-2">{t('contact.downloadCV')}</div>
-              <a href="/CV_Yarno_Chedemail.pdf" download>
-                <span className="block px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition disabled:opacity-50 disabled:cursor-not-allowed">
-                  {language === 'fr' ? 'ici' : 'here'}
+              {profile?.cvUrl ? (
+                <a href={profile.cvUrl} target="_blank" rel="noopener noreferrer" download>
+                  <span className="block px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition disabled:opacity-50 disabled:cursor-not-allowed">
+                    {language === 'fr' ? 'ici' : 'here'}
+                  </span>
+                </a>
+              ) : (
+                <span className="block px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-100 text-gray-400 cursor-not-allowed">
+                  {language === 'fr' ? 'CV non disponible' : 'CV not available'}
                 </span>
-              </a>
+              )}
             </div>
           </div>
         </section>

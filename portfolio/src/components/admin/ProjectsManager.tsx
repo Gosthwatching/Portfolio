@@ -6,7 +6,11 @@ interface Project {
   _id: string;
   title: string;
   description?: string;
+  description_fr?: string;
+  description_en?: string;
   longDescription?: string;
+  longDescription_fr?: string;
+  longDescription_en?: string;
   imageUrl?: string;
   link?: string;
   github?: string;
@@ -22,7 +26,11 @@ const ProjectsManager: React.FC = () => {
   const [form, setForm] = useState<Partial<Project>>({
     title: '',
     description: '',
+    description_fr: '',
+    description_en: '',
     longDescription: '',
+    longDescription_fr: '',
+    longDescription_en: '',
     imageUrl: '',
     link: '',
     github: '',
@@ -100,7 +108,11 @@ const ProjectsManager: React.FC = () => {
     setForm({
       title: p.title || '',
       description: p.description || '',
+      description_fr: p.description_fr || '',
+      description_en: p.description_en || '',
       longDescription: p.longDescription || '',
+      longDescription_fr: p.longDescription_fr || '',
+      longDescription_en: p.longDescription_en || '',
       imageUrl: p.imageUrl || '',
       link: p.link || '',
       github: p.github || '',
@@ -133,7 +145,11 @@ const ProjectsManager: React.FC = () => {
     setForm({
       title: '',
       description: '',
+      description_fr: '',
+      description_en: '',
       longDescription: '',
+      longDescription_fr: '',
+      longDescription_en: '',
       imageUrl: '',
       link: '',
       github: '',
@@ -188,57 +204,6 @@ const ProjectsManager: React.FC = () => {
             />
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-900 mb-1">Description courte</label>
-            <textarea
-              value={form.description}
-              onChange={(e) => setForm({ ...form, description: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
-              rows={2}
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-900 mb-1">Description longue</label>
-            <textarea
-              value={form.longDescription}
-              onChange={(e) => setForm({ ...form, longDescription: e.target.value })}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
-              rows={4}
-            />
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-900 mb-1">GitHub</label>
-              <input
-                type="url"
-                value={form.github}
-                onChange={(e) => setForm({ ...form, github: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-900 mb-1">Demo Live</label>
-              <input
-                type="url"
-                value={form.live}
-                onChange={(e) => setForm({ ...form, live: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-900 mb-1">Image</label>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={(e) => setImageFile(e.target.files?.[0] || null)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
-              />
-            </div>
-          </div>
-
           {/* Tags */}
           <div>
             <label className="block text-sm font-medium text-gray-900 mb-1">Tags</label>
@@ -247,7 +212,7 @@ const ProjectsManager: React.FC = () => {
                 type="text"
                 value={tagInput}
                 onChange={(e) => setTagInput(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addTag())}
+                onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addTag())}
                 className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               />
               <button
@@ -273,6 +238,27 @@ const ProjectsManager: React.FC = () => {
             </div>
           </div>
 
+          {/* Descriptions multilingues */}
+          <div>
+            <label className="block text-sm font-medium text-gray-900 mb-1">Description courte (Français)</label>
+            <textarea
+              value={form.description_fr}
+              onChange={(e) => setForm({ ...form, description_fr: e.target.value })}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
+              rows={2}
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-900 mb-1">Description courte (Anglais)</label>
+            <textarea
+              value={form.description_en}
+              onChange={(e) => setForm({ ...form, description_en: e.target.value })}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
+              rows={2}
+            />
+          </div>
+
+
           {/* Tech Stack */}
           <div>
             <label className="block text-sm font-medium text-gray-900 mb-1">Technologies</label>
@@ -281,7 +267,7 @@ const ProjectsManager: React.FC = () => {
                 type="text"
                 value={techInput}
                 onChange={(e) => setTechInput(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addTech())}
+                onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addTech())}
                 className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               />
               <button
@@ -346,7 +332,15 @@ const ProjectsManager: React.FC = () => {
                 )}
                 <div className="flex-1">
                   <h3 className="font-semibold">{p.title}</h3>
-                  <p className="text-sm text-gray-600 line-clamp-1">{p.description}</p>
+                  {(p.description_fr || p.description_en || p.description) && (
+                    <>
+                      {p.description_fr && <p className="text-sm text-gray-600 line-clamp-1">FR: {p.description_fr}</p>}
+                      {p.description_en && <p className="text-sm text-gray-600 line-clamp-1">EN: {p.description_en}</p>}
+                      {!p.description_fr && !p.description_en && p.description && (
+                        <p className="text-sm text-gray-600 line-clamp-1">{p.description}</p>
+                      )}
+                    </>
+                  )}
                   <div className="flex flex-wrap gap-2 mt-2">
                     {p.tags && p.tags.length > 0 && (
                       <div className="flex gap-1">
