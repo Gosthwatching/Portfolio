@@ -6,6 +6,7 @@ const skillSchema = new mongoose.Schema({
   category: String,
   description: String,
   icon: String,
+  order: { type: Number, default: 0 },
 }, { timestamps: true });
 
 module.exports = mongoose.model('Skill', skillSchema);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { FiEdit2, FiTrash2 } from 'react-icons/fi';
+import { FiEdit2, FiTrash2, FiArrowUp, FiArrowDown } from 'react-icons/fi';
 
 interface Skill {
   _id: string;
@@ -115,8 +115,25 @@ const SkillsManager: React.FC = () => {
 
   const filteredSkills =
     filterCategory === 'all'
-      ? skills
-      : skills.filter((s) => s.category === filterCategory);
+      ? [...skills].sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+      : skills.filter((s) => s.category === filterCategory).sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+
+  const moveSkill = async (index: number, direction: 'up' | 'down') => {
+    const arr = [...filteredSkills];
+    if ((direction === 'up' && index === 0) || (direction === 'down' && index === arr.length - 1)) return;
+    const swapIdx = direction === 'up' ? index - 1 : index + 1;
+    [arr[index], arr[swapIdx]] = [arr[swapIdx], arr[index]];
+    // update order fields
+    const orderArray = arr.map((s, idx) => ({ _id: s._id, order: idx }));
+    try {
+      const token = localStorage.getItem('token');
+      const config = { headers: { Authorization: `Bearer ${token}` } };
+      await axios.put(`${API_URL}/skills/order/update`, orderArray, config);
+      fetchSkills();
+    } catch (err) {
+      alert('Erreur lors du changement d\'ordre');
+    }
+  };
 
   return (
     <div className="space-y-6">
@@ -240,7 +257,7 @@ const SkillsManager: React.FC = () => {
           <div className="p-12 text-center text-gray-500">Aucune compétence pour le moment</div>
         ) : (
           <div className="divide-y">
-            {filteredSkills.map((s) => (
+            {filteredSkills.map((s, idx) => (
               <div key={s._id} className="p-4 hover:bg-gray-50 flex items-center gap-4">
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
@@ -261,7 +278,23 @@ const SkillsManager: React.FC = () => {
                     </>
                   )}
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-2 items-center">
+                  <button
+                    onClick={() => moveSkill(idx, 'up')}
+                    className="p-2 text-gray-600 hover:bg-gray-100 rounded"
+                    title="Monter"
+                    disabled={idx === 0}
+                  >
+                    <FiArrowUp />
+                  </button>
+                  <button
+                    onClick={() => moveSkill(idx, 'down')}
+                    className="p-2 text-gray-600 hover:bg-gray-100 rounded"
+                    title="Descendre"
+                    disabled={idx === filteredSkills.length - 1}
+                  >
+                    <FiArrowDown />
+                  </button>
                   <button
                     onClick={() => handleEdit(s)}
                     className="p-2 text-blue-600 hover:bg-blue-50 rounded"

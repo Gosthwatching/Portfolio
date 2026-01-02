@@ -8,5 +8,6 @@ router.get('/:id', ctrl.get);
 router.post('/', auth, ctrl.create);
 router.put('/:id', auth, ctrl.update);
 router.delete('/:id', auth, ctrl.remove);
+router.put('/order/update', auth, ctrl.updateOrder);
 
 module.exports = router;

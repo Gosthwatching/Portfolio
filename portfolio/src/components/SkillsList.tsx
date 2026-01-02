@@ -2,6 +2,28 @@ import React, { useState, useMemo, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import type { SkillGroup } from "../types/portfolio";
 import * as SiIcons from "react-icons/si";
+import * as FaIcons from "react-icons/fa";
+import * as Fa6Icons from "react-icons/fa6";
+import * as LiaIcons from "react-icons/lia";
+import * as MdIcons from "react-icons/md";
+import * as TbIcons from "react-icons/tb";
+import * as IoIcons from "react-icons/io";
+import * as Io5Icons from "react-icons/io5";
+import * as GiIcons from "react-icons/gi";
+import * as BsIcons from "react-icons/bs";
+import * as AiIcons from "react-icons/ai";
+import * as RiIcons from "react-icons/ri";
+import * as CgIcons from "react-icons/cg";
+import * as HiIcons from "react-icons/hi";
+import * as Hi2Icons from "react-icons/hi2";
+import * as BiIcons from "react-icons/bi";
+import * as ImIcons from "react-icons/im";
+import * as VscIcons from "react-icons/vsc";
+import * as SlIcons from "react-icons/sl";
+import * as GrIcons from "react-icons/gr";
+import * as FcIcons from "react-icons/fc";
+import * as TfiIcons from "react-icons/tfi";
+import * as PiIcons from "react-icons/pi";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa6";
 
 export const SkillsList: React.FC<{
@@ -158,7 +180,32 @@ export const SkillsList: React.FC<{
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-6 gap-4">
                   {groupSkills.map((s) => {
-                    const Icon = SiIcons[s.icon as keyof typeof SiIcons];
+                    let Icon = null;
+                    if (s.icon) {
+                      if (s.icon.startsWith('Si')) Icon = SiIcons[s.icon as keyof typeof SiIcons];
+                      else if (s.icon.startsWith('Fa6')) Icon = Fa6Icons[s.icon as keyof typeof Fa6Icons];
+                      else if (s.icon.startsWith('Fa')) Icon = FaIcons[s.icon as keyof typeof FaIcons];
+                      else if (s.icon.startsWith('Lia')) Icon = LiaIcons[s.icon as keyof typeof LiaIcons];
+                      else if (s.icon.startsWith('Md')) Icon = MdIcons[s.icon as keyof typeof MdIcons];
+                      else if (s.icon.startsWith('Tb')) Icon = TbIcons[s.icon as keyof typeof TbIcons];
+                      else if (s.icon.startsWith('Io5')) Icon = Io5Icons[s.icon as keyof typeof Io5Icons];
+                      else if (s.icon.startsWith('Io')) Icon = IoIcons[s.icon as keyof typeof IoIcons];
+                      else if (s.icon.startsWith('Gi')) Icon = GiIcons[s.icon as keyof typeof GiIcons];
+                      else if (s.icon.startsWith('Bs')) Icon = BsIcons[s.icon as keyof typeof BsIcons];
+                      else if (s.icon.startsWith('Ai')) Icon = AiIcons[s.icon as keyof typeof AiIcons];
+                      else if (s.icon.startsWith('Ri')) Icon = RiIcons[s.icon as keyof typeof RiIcons];
+                      else if (s.icon.startsWith('Cg')) Icon = CgIcons[s.icon as keyof typeof CgIcons];
+                      else if (s.icon.startsWith('Hi2')) Icon = Hi2Icons[s.icon as keyof typeof Hi2Icons];
+                      else if (s.icon.startsWith('Hi')) Icon = HiIcons[s.icon as keyof typeof HiIcons];
+                      else if (s.icon.startsWith('Bi')) Icon = BiIcons[s.icon as keyof typeof BiIcons];
+                      else if (s.icon.startsWith('Im')) Icon = ImIcons[s.icon as keyof typeof ImIcons];
+                      else if (s.icon.startsWith('Vsc')) Icon = VscIcons[s.icon as keyof typeof VscIcons];
+                      else if (s.icon.startsWith('Sl')) Icon = SlIcons[s.icon as keyof typeof SlIcons];
+                      else if (s.icon.startsWith('Gr')) Icon = GrIcons[s.icon as keyof typeof GrIcons];
+                      else if (s.icon.startsWith('Fc')) Icon = FcIcons[s.icon as keyof typeof FcIcons];
+                      else if (s.icon.startsWith('Tfi')) Icon = TfiIcons[s.icon as keyof typeof TfiIcons];
+                      else if (s.icon.startsWith('Pi')) Icon = PiIcons[s.icon as keyof typeof PiIcons];
+                    }
                     return (
                       <motion.fieldset
                         key={s.name}
@@ -183,11 +230,15 @@ export const SkillsList: React.FC<{
                             </div>
                           </div>
 
-                          {Icon && (
+                          {Icon ? (
                             <div className="flex items-center shrink-0">
                               <Icon className="w-6 h-6 text-[var(--muted)]" />
                             </div>
-                          )}
+                          ) : s.icon && s.icon.startsWith('<svg') ? (
+                            <span className="flex items-center shrink-0" dangerouslySetInnerHTML={{ __html: s.icon }} />
+                          ) : s.icon && s.icon.startsWith('http') ? (
+                            <img src={s.icon} alt={s.name} className="w-6 h-6 object-contain" />
+                          ) : null}
                         </div>
                       </motion.fieldset>
                     );

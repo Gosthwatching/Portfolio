@@ -1,3 +1,11 @@
+async function updateOrder(req, res) {
+  try {
+    await repo.updateOrder(req.body);
+    res.json({ success: true });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
 const repo = require('../repositories/skills');
 
 async function list(req, res) {
@@ -47,4 +55,4 @@ async function remove(req, res) {
   }
 }
 
-module.exports = { list, get, create, update, remove };
+module.exports = { list, get, create, update, remove, updateOrder };
