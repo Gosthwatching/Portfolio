@@ -1,14 +1,17 @@
 // ProjectCard.tsx
+
 import React, { useState } from "react";
+import { useLanguage } from "../context/LanguageContext";
 import { motion } from "framer-motion";
 import { tagColors } from "../config/portfolioData";
 import type { Project } from "../types/portfolio";
 import * as FaIcons from "react-icons/fa";
 
 export const ProjectCard: React.FC<{
-  project: Project;
+  project: any;
 }> = ({ project }) => {
   const [showAll, setShowAll] = useState(false);
+  const { language } = useLanguage();
 
   // how many tags to show before "+x"
   const VISIBLE_COUNT = 3;
@@ -20,6 +23,16 @@ export const ProjectCard: React.FC<{
     : project?.tags?.slice(0, VISIBLE_COUNT);
   const hiddenCount = (project?.tags?.length ?? 0) - VISIBLE_COUNT;
 
+  // Correction : on utilise imageUrl si image n'existe pas (compatibilité backend)
+  const imageSrc = project.image || project.imageUrl;
+
+  // Correction : affichage robuste de la description selon la langue
+  let desc = project[`description_${language}`];
+  if (!desc) desc = project.description;
+
+  // DEBUG TEMPORAIRE : Affiche la langue et les descriptions reçues
+  console.log('LANG:', language, 'desc_fr:', project.description_fr, 'desc_en:', project.description_en, 'desc:', project.description);
+
   return (
     <motion.article
       layout
@@ -28,28 +41,26 @@ export const ProjectCard: React.FC<{
     >
       <div className="flex items-start justify-between gap-4">
         <div>
-          {project.image && (
+          {imageSrc && (
             <div className="w-full flex justify-center mb-4">
               <img
-                src={project.image}
+                src={imageSrc}
                 alt={project.title}
                 className="rounded-lg border border-[var(--border)] w-full object-cover h-45"
               />
             </div>
           )}
-          <h3 className="font-bold text-xl text-[var(--brand)]">
-            {project.title}
-          </h3>
+          <h3 className="font-bold text-xl text-[var(--brand)]">{project.title}</h3>
           {project.isUnderDevelopment && (
             <span className="text-xs text-[var(--muted)] pl-2">Under Development</span>
           )}
-          {project.description && (
-            <p className="text-sm text-[var(--muted)] mt-1 line-clamp-2">{project.description}</p>
+          {desc && (
+            <p className="text-sm text-[var(--muted)] mt-1 line-clamp-2">{desc}</p>
           )}
-          {project.href && (
+          {(project.href || project.live) && (
             <div className="mt-3">
               <a
-                href={project.href}
+                href={project.href || project.live}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={(e) => e.stopPropagation()}
@@ -59,19 +70,15 @@ export const ProjectCard: React.FC<{
               </a>
             </div>
           )}
-
           <div className="mt-3 flex gap-2 flex-wrap">
             {visibleTags?.map((t) => (
               <span
                 key={t}
-                className={`text-xs font-semibold px-2 py-1 rounded-full ${
-                  tagColors[t] || "bg-gray-100 text-gray-800"
-                }`}
+                className={`text-xs font-semibold px-2 py-1 rounded-full ${tagColors[t] || "bg-gray-100 text-gray-800"}`}
               >
                 {t}
               </span>
             ))}
-            
             {project.techStack?.map((tech) => (
               <span
                 key={tech}
@@ -80,7 +87,6 @@ export const ProjectCard: React.FC<{
                 {tech}
               </span>
             ))}
-
             {!showAll && hiddenCount > 0 && (
               <button
                 onClick={(e) => {

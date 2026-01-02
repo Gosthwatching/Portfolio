@@ -8,9 +8,6 @@ interface Project {
   description?: string;
   description_fr?: string;
   description_en?: string;
-  longDescription?: string;
-  longDescription_fr?: string;
-  longDescription_en?: string;
   imageUrl?: string;
   link?: string;
   github?: string;
@@ -28,9 +25,6 @@ const ProjectsManager: React.FC = () => {
     description: '',
     description_fr: '',
     description_en: '',
-    longDescription: '',
-    longDescription_fr: '',
-    longDescription_en: '',
     imageUrl: '',
     link: '',
     github: '',
@@ -70,7 +64,8 @@ const ProjectsManager: React.FC = () => {
       const fd = new FormData();
       fd.append('title', form.title);
       if (form.description) fd.append('description', form.description);
-      if (form.longDescription) fd.append('longDescription', form.longDescription);
+      if (form.description_fr) fd.append('description_fr', form.description_fr);
+      if (form.description_en) fd.append('description_en', form.description_en);
       if (form.link) fd.append('link', form.link);
       if (form.github) fd.append('github', form.github);
       if (form.live) fd.append('live', form.live);
@@ -110,9 +105,6 @@ const ProjectsManager: React.FC = () => {
       description: p.description || '',
       description_fr: p.description_fr || '',
       description_en: p.description_en || '',
-      longDescription: p.longDescription || '',
-      longDescription_fr: p.longDescription_fr || '',
-      longDescription_en: p.longDescription_en || '',
       imageUrl: p.imageUrl || '',
       link: p.link || '',
       github: p.github || '',
@@ -147,9 +139,6 @@ const ProjectsManager: React.FC = () => {
       description: '',
       description_fr: '',
       description_en: '',
-      longDescription: '',
-      longDescription_fr: '',
-      longDescription_en: '',
       imageUrl: '',
       link: '',
       github: '',
@@ -193,6 +182,27 @@ const ProjectsManager: React.FC = () => {
           {editing ? 'Modifier le projet' : 'Ajouter un projet'}
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Image URL */}
+          <div>
+            <label className="block text-sm font-medium text-gray-900 mb-1">Image (URL)</label>
+            <input
+            type="text"
+            value={form.imageUrl || ''}
+            onChange={e => setForm({ ...form, imageUrl: e.target.value })}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
+            placeholder="https://..."
+            />
+          </div>
+          {/* Upload image */}
+          <div>
+            <label className="block text-sm font-medium text-gray-900 mb-1">Upload une image</label>
+            <input
+            type="file"
+            accept="image/*"
+            onChange={e => setImageFile(e.target.files?.[0] || null)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
+            />
+          </div>
           <div>
             <label className="block text-sm font-medium text-gray-900 mb-1">Titre *</label>
             <input
@@ -201,6 +211,17 @@ const ProjectsManager: React.FC = () => {
               onChange={(e) => setForm({ ...form, title: e.target.value })}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
               required
+            />
+          </div>
+          {/* Live Demo URL */}
+          <div>
+            <label className="block text-sm font-medium text-gray-900 mb-1">URL Live Demo</label>
+            <input
+            type="text"
+            value={form.live || ''}
+            onChange={e => setForm({ ...form, live: e.target.value })}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
+            placeholder="https://"
             />
           </div>
 
@@ -238,9 +259,9 @@ const ProjectsManager: React.FC = () => {
             </div>
           </div>
 
-          {/* Descriptions multilingues */}
+          {/* Description FR */}
           <div>
-            <label className="block text-sm font-medium text-gray-900 mb-1">Description courte (Français)</label>
+            <label className="block text-sm font-medium text-gray-900 mb-1">Description (Français)</label>
             <textarea
               value={form.description_fr}
               onChange={(e) => setForm({ ...form, description_fr: e.target.value })}
@@ -248,8 +269,9 @@ const ProjectsManager: React.FC = () => {
               rows={2}
             />
           </div>
+          {/* Description EN */}
           <div>
-            <label className="block text-sm font-medium text-gray-900 mb-1">Description courte (Anglais)</label>
+            <label className="block text-sm font-medium text-gray-900 mb-1">Description (Anglais)</label>
             <textarea
               value={form.description_en}
               onChange={(e) => setForm({ ...form, description_en: e.target.value })}
@@ -257,8 +279,6 @@ const ProjectsManager: React.FC = () => {
               rows={2}
             />
           </div>
-
-
           {/* Tech Stack */}
           <div>
             <label className="block text-sm font-medium text-gray-900 mb-1">Technologies</label>

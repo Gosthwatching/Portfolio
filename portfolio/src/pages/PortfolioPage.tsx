@@ -47,7 +47,7 @@ const PortfolioContent: React.FC = () => {
         const links = [];
         if (p.github) links.push({ label: 'GitHub', url: p.github, icon: 'FaGithub' });
         if (p.live) links.push({ label: 'Live Demo', url: p.live, icon: 'FaExternalLinkAlt' });
-        
+
         // Normalize image URL: if backend returns a relative /uploads path,
         // prefix it with the API URL so the browser requests the file from the backend.
         const rawImage = p.imageUrl || '';
@@ -56,18 +56,16 @@ const PortfolioContent: React.FC = () => {
         return {
           id: p._id || `proj-${index}`,
           title: p.title || '',
-          description:
-            (language === 'fr' && (p.description_fr || p.description)) ||
-            (language === 'en' && (p.description_en || p.description)) ||
-            p.description || '',
+          description: p.description || '',
+          description_fr: p.description_fr || '',
+          description_en: p.description_en || '',
           image: normalizedImage || '',
           href: p.live || p.link || '', // Use live as main href, fallback to link
           tags: p.tags || [],
           links: links,
-          longDescription:
-            (language === 'fr' && (p.longDescription_fr || p.longDescription || p.description_fr || p.description)) ||
-            (language === 'en' && (p.longDescription_en || p.longDescription || p.description_en || p.description)) ||
-            p.longDescription || p.description || '',
+          longDescription: p.longDescription || '',
+          longDescription_fr: p.longDescription_fr || '',
+          longDescription_en: p.longDescription_en || '',
           techStack: p.techStack || [],
         };
       });

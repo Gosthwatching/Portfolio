@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const projectSchema = new mongoose.Schema({
   title: { type: String, required: true },
   description: String,
-  longDescription: String,
+  description_fr: String,
+  description_en: String,
   imageUrl: String,
   link: String,
   github: String,
