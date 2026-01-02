@@ -61,6 +61,7 @@ export type Skill = {
   years?: number; // years of experience
   category?: "frontend" | "backend" | "data" | "devops" | "tooling" | "database" | "other";
   note?: string; // optional note e.g. "used at work since 2020"
+  description?: string; // longer description, markdown ok
 };
 
 export type SkillGroup = {
