@@ -258,17 +258,14 @@ const PortfolioContent: React.FC = () => {
 
             <div className="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--border)] flex flex-col justify-center items-center">
               <div className="text-sm font-medium mb-2">{t('contact.downloadCV')}</div>
-              {profile?.cvUrl ? (
-                <a href={profile.cvUrl} target="_blank" rel="noopener noreferrer" download>
-                  <span className="block px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition disabled:opacity-50 disabled:cursor-not-allowed">
-                    {language === 'fr' ? 'ici' : 'here'}
-                  </span>
-                </a>
-              ) : (
-                <span className="block px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-100 text-gray-400 cursor-not-allowed">
-                  {language === 'fr' ? 'CV non disponible' : 'CV not available'}
-                </span>
-              )}
+              <a
+                href="https://raw.githubusercontent.com/Gosthwatching/Portfolio/master/portfolio/src/assets/CV%20Yarno%20Chedemail.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-[var(--brand)] text-[var(--brand)] font-medium hover:bg-[var(--brand)] hover:text-white transition cursor-pointer"
+              >
+                {t('contact.downloadCV.button')}
+              </a>
             </div>
           </div>
         </section>

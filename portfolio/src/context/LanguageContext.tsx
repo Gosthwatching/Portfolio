@@ -47,6 +47,7 @@ const translations = {
     'contact.placeholder.email': 'votre.email@exemple.com',
     'contact.placeholder.message': 'Décrivez votre projet ou dites bonjour...',
     'contact.downloadCV': 'Télécharger mon CV',
+    'contact.downloadCV.button': 'ici',
     
     // Footer
     'footer.template': 'Template réalisé par',
@@ -85,7 +86,8 @@ const translations = {
     'contact.placeholder.name': 'Your name',
     'contact.placeholder.email': 'your.email@example.com',
     'contact.placeholder.message': 'Describe your project or just say hello...',
-    'contact.downloadCV': 'Download my remsume',
+    'contact.downloadCV': 'Download my resume',
+    'contact.downloadCV.button': 'here',
     
     // Footer
     'footer.template': 'Template made by',

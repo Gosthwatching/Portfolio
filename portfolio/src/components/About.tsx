@@ -1,7 +1,9 @@
 import { motion, animate } from "framer-motion";
 import type { Personal } from "../types/portfolio";
+import { useLanguage } from "../context/LanguageContext";
 
 export const About: React.FC<{ personal: Personal }> = ({ personal }) => {
+  const { t } = useLanguage();
   const smoothScrollTo = (targetId: string) => {
     const target = document.querySelector(targetId);
     if (!target) return;
@@ -44,13 +46,13 @@ export const About: React.FC<{ personal: Personal }> = ({ personal }) => {
             onClick={() => smoothScrollTo('#projects')}
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[var(--brand)] text-white font-medium hover:opacity-90 transition cursor-pointer"
           >
-            Voir mes projets
+            {t('about.viewProjects')}
           </button>
           <button 
             onClick={() => smoothScrollTo('#contact')}
             className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border-2 border-[var(--brand)] text-[var(--brand)] font-medium hover:bg-[var(--brand)] hover:text-white transition cursor-pointer"
           >
-            Me contacter
+            {t('about.contactMe')}
           </button>
         </div>
 

@@ -42,21 +42,24 @@ export const ProjectCard: React.FC<{
       <div className="flex items-start justify-between gap-4">
         <div>
           {imageSrc && (
-            <div className="w-full flex justify-center mb-4">
+            <div className="w-full flex justify-center items-center mb-4 min-h-[180px]">
               <img
                 src={imageSrc}
                 alt={project.title}
-                className="rounded-lg border border-[var(--border)] w-full object-cover h-45"
+                className="rounded-lg border border-[var(--border)] object-cover max-h-44 max-w-full mx-auto"
+                style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto' }}
               />
             </div>
           )}
-          <h3 className="font-bold text-xl text-[var(--brand)]">{project.title}</h3>
-          {project.isUnderDevelopment && (
-            <span className="text-xs text-[var(--muted)] pl-2">Under Development</span>
-          )}
-          {desc && (
-            <p className="text-sm text-[var(--muted)] mt-1 line-clamp-2">{desc}</p>
-          )}
+          <div style={{ minHeight: '70px' }}>
+            <h3 className="font-bold text-xl text-[var(--brand)]">{project.title}</h3>
+            {project.isUnderDevelopment && (
+              <span className="text-xs text-[var(--muted)] pl-2">Under Development</span>
+            )}
+            {desc && (
+              <p className="text-sm text-[var(--muted)] mt-1 line-clamp-2">{desc}</p>
+            )}
+          </div>
           {(project.href || project.live) && (
             <div className="mt-3">
               <a
