@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useLanguage } from "../context/LanguageContext";
 import { motion } from "framer-motion";
 import { tagColors } from "../config/portfolioData";
-import type { Project } from "../types/portfolio";
+
 import * as FaIcons from "react-icons/fa";
 
 export const ProjectCard: React.FC<{
@@ -71,7 +71,7 @@ export const ProjectCard: React.FC<{
             </div>
           )}
           <div className="mt-3 flex gap-2 flex-wrap">
-            {visibleTags?.map((t) => (
+            {visibleTags?.map((t: string) => (
               <span
                 key={t}
                 className={`text-xs font-semibold px-2 py-1 rounded-full ${tagColors[t] || "bg-gray-100 text-gray-800"}`}
@@ -79,7 +79,7 @@ export const ProjectCard: React.FC<{
                 {t}
               </span>
             ))}
-            {project.techStack?.map((tech) => (
+            {project.techStack?.map((tech: string) => (
               <span
                 key={tech}
                 className="text-xs font-semibold px-2 py-1 rounded-full bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
