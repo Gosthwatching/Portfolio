@@ -10,6 +10,7 @@ interface Skill {
   description_fr?: string;
   description_en?: string;
   icon?: string;
+  order?: number;
 }
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api';
