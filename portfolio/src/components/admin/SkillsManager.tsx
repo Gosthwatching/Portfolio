@@ -54,7 +54,7 @@ const SkillsManager: React.FC = () => {
 
     try {
       setLoading(true);
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('admin_token');
       const config = { headers: { Authorization: `Bearer ${token}` } };
       
       if (editing) {
@@ -76,12 +76,12 @@ const SkillsManager: React.FC = () => {
 
   const handleEdit = (s: Skill) => {
     setForm({
-      name: s.name || '',
-      category: s.category || '',
-      description: s.description || '',
-      description_fr: s.description_fr || '',
-      description_en: s.description_en || '',
-      icon: s.icon || '',
+      name: s.name ?? '',
+      category: s.category ?? '',
+      description: s.description ?? '',
+      description_fr: s.description_fr ?? '',
+      description_en: s.description_en ?? '',
+      icon: s.icon ?? '',
     });
     setEditing(s._id);
   };
@@ -90,7 +90,7 @@ const SkillsManager: React.FC = () => {
     if (!confirm('Êtes-vous sûr de vouloir supprimer cette compétence ?')) return;
     try {
       setLoading(true);
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('admin_token');
       const config = { headers: { Authorization: `Bearer ${token}` } };
       await axios.delete(`${API_URL}/skills/${id}`, config);
       fetchSkills();
@@ -127,7 +127,7 @@ const SkillsManager: React.FC = () => {
     // update order fields
     const orderArray = arr.map((s, idx) => ({ _id: s._id, order: idx }));
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('admin_token');
       const config = { headers: { Authorization: `Bearer ${token}` } };
       await axios.put(`${API_URL}/skills/order/update`, orderArray, config);
       fetchSkills();
