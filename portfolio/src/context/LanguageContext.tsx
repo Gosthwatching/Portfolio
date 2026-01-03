@@ -45,7 +45,7 @@ const translations = {
     'contact.error': 'Erreur lors de l\'envoi',
     'contact.placeholder.name': 'Votre nom',
     'contact.placeholder.email': 'votre.email@exemple.com',
-    'contact.placeholder.message': 'Décrivez votre projet ou dites bonjour...',
+    'contact.placeholder.message': 'Décrivez votre projet...',
     'contact.downloadCV': 'Télécharger mon CV',
     'contact.downloadCV.button': 'ici',
     
@@ -85,7 +85,7 @@ const translations = {
     'contact.error': 'Error sending message',
     'contact.placeholder.name': 'Your name',
     'contact.placeholder.email': 'your.email@example.com',
-    'contact.placeholder.message': 'Describe your project or just say hello...',
+    'contact.placeholder.message': 'Describe your project...',
     'contact.downloadCV': 'Download my resume',
     'contact.downloadCV.button': 'here',
     
