@@ -191,7 +191,8 @@ export const ProjectModal: React.FC<{
                       )}
                       {/* Description */}
                       <p className="text-sm text-[var(--text)] mb-4">
-                        {project[`description_${language}`] || project.description}
+                        {typeof project === 'object' && project !== null &&
+                          ((project as any)[`description_${language}`] || project.description)}
                       </p>
 
                       {project.href && (

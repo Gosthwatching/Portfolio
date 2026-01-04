@@ -12,7 +12,7 @@ export const ProjectCard: React.FC<{
   onVoirPlus?: () => void;
 }> = ({ project, onVoirPlus }) => {
   const [showAll, setShowAll] = useState(false);
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
 
   // how many tags to show before "+x"
   const VISIBLE_COUNT = 3;
@@ -81,7 +81,7 @@ export const ProjectCard: React.FC<{
                   className="px-3 py-1.5 text-sm font-medium text-white bg-[var(--brand)] rounded-lg hover:opacity-90 transition"
                   style={{ minWidth: 80 }}
                 >
-                  Voir plus
+                  {t('project.seeMore')}
                 </button>
               )}
             </div>

@@ -51,6 +51,7 @@ const translations = {
     
     // Footer
     'footer.template': 'Template réalisé par',
+    'project.seeMore': 'Voir plus',
   },
   en: {
     // Navigation
@@ -91,6 +92,7 @@ const translations = {
     
     // Footer
     'footer.template': 'Template made by',
+    'project.seeMore': 'See more',
   },
 };
 
