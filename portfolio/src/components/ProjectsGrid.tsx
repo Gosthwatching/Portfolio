@@ -1,5 +1,7 @@
+
 import React, { useMemo, useState } from "react";
 import { ProjectCard } from "./ProjectCard";
+import { ProjectModal } from "./ProjectModal";
 import type { Project } from "../types/portfolio";
 
 export const ProjectsGrid: React.FC<{
@@ -7,6 +9,7 @@ export const ProjectsGrid: React.FC<{
   showFilters?: boolean;
 }> = ({ projects = [], showFilters = false }) => {
   const [filter, setFilter] = useState<string>("All");
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const filters = useMemo(
     () => [
       "All",
@@ -39,14 +42,22 @@ export const ProjectsGrid: React.FC<{
       )}
 
       <div
-        className={`${
+        className={`$${
           showFilters ? "mt-6" : ""
         } grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6`}
       >
         {visible.map((p) => (
-          <ProjectCard key={p.id} project={p} />
+          <div key={p.id} className="relative group">
+            <ProjectCard project={p} onVoirPlus={() => setSelectedProject(p)} />
+          </div>
         ))}
       </div>
+
+      <ProjectModal
+        project={selectedProject}
+        open={!!selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
     </section>
   );
 };

@@ -1,4 +1,13 @@
 
+
+# 🌍 Accès en ligne
+
+Vous pouvez accéder directement au portfolio à l'adresse suivante :
+👉 https://yarno-chedemail.com/
+
+Pour accéder au dashboard administrateur :
+👉 https://yarno-chedemail.com/#/admin/login
+
 # 🚀 Portfolio Professionnel Full-Stack (Projet Personnel)
 
 > Ceci est le portfolio personnel de Yarno Chedemail. Il n'est pas destiné à être téléchargé, adapté ou réutilisé par d'autres personnes.

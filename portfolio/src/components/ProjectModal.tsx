@@ -4,6 +4,7 @@ import remarkGfm from "remark-gfm";
 import type { Project } from "../types/portfolio";
 import { tagColors } from "../config/portfolioData";
 import { useTheme } from "../context/ThemeContext";
+import { useLanguage } from "../context/LanguageContext";
 import { motion, AnimatePresence, useScroll } from "framer-motion";
 import { Spinner } from "./shared/Spinner";
 
@@ -17,6 +18,7 @@ export const ProjectModal: React.FC<{
   onClose: () => void;
 }> = ({ project, open, onClose }) => {
   const { dark } = useTheme();
+  const { language } = useLanguage();
   const [readme, setReadme] = useState<string | null>(null);
   const [iframeAllowed, setIframeAllowed] = useState(false);
   const [activeTab, setActiveTab] = useState<"details" | "playground">(
@@ -189,7 +191,7 @@ export const ProjectModal: React.FC<{
                       )}
                       {/* Description */}
                       <p className="text-sm text-[var(--text)] mb-4">
-                        {project.description}
+                        {project[`description_${language}`] || project.description}
                       </p>
 
                       {project.href && (

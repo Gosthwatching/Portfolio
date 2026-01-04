@@ -9,7 +9,8 @@ import * as FaIcons from "react-icons/fa";
 
 export const ProjectCard: React.FC<{
   project: any;
-}> = ({ project }) => {
+  onVoirPlus?: () => void;
+}> = ({ project, onVoirPlus }) => {
   const [showAll, setShowAll] = useState(false);
   const { language } = useLanguage();
 
@@ -31,7 +32,7 @@ export const ProjectCard: React.FC<{
   if (!desc) desc = project.description;
 
   // DEBUG TEMPORAIRE : Affiche la langue et les descriptions reçues
-  console.log('LANG:', language, 'desc_fr:', project.description_fr, 'desc_en:', project.description_en, 'desc:', project.description);
+  // console.log('LANG:', language, 'desc_fr:', project.description_fr, 'desc_en:', project.description_en, 'desc:', project.description);
 
   return (
     <motion.article
@@ -61,7 +62,7 @@ export const ProjectCard: React.FC<{
             )}
           </div>
           {(project.href || project.live) && (
-            <div className="mt-3">
+            <div className="mt-3 flex gap-2">
               <a
                 href={project.href || project.live}
                 target="_blank"
@@ -71,6 +72,18 @@ export const ProjectCard: React.FC<{
               >
                 {FaLink && <FaLink className="w-4 h-4" />} Live Demo
               </a>
+              {onVoirPlus && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onVoirPlus();
+                  }}
+                  className="px-3 py-1.5 text-sm font-medium text-white bg-[var(--brand)] rounded-lg hover:opacity-90 transition"
+                  style={{ minWidth: 80 }}
+                >
+                  Voir plus
+                </button>
+              )}
             </div>
           )}
           <div className="mt-3 flex gap-2 flex-wrap">
