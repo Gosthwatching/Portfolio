@@ -1,0 +1,25 @@
+[{
+  "_id": {
+    "$oid": "695008962b81e3ceb5fa6c9e"
+  },
+  "firstName": "Yarno",
+  "lastName": "Chedemail",
+  "title": "Bachelor — Full Stack Developer",
+  "email": "yarno.chedemail@3wacademy.fr",
+  "phone": "+33 06 27 86 69 44",
+  "location": "France, Paris",
+  "github": "https://github.com/Gosthwatching",
+  "linkedin": "https://www.linkedin.com/in/yarnochedemail/",
+  "avatar": "https://res.cloudinary.com/dsb7v3shr/image/upload/v1767101371/portfolio/avatars/1767017010762-810708278.jpg",
+  "cvUrl": "https://res.cloudinary.com/dsb7v3shr/raw/upload/v1767533665/portfolio/cv/koba8710ffnqctqhm6wc",
+  "createdAt": {
+    "$date": "2025-12-27T16:25:58.562Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-04T13:37:11.919Z"
+  },
+  "__v": 0,
+  "bio": "Étudiant en développement web, je touche à différents domaines du numérique comme la conception, l’UX/UI, la cybersécurité ou encore les bases de données. J’aime apprendre, expérimenter et développer des projets qui me permettent de progresser. Mon objectif est de devenir un profil polyvalent capable de contribuer à toutes les étapes d’un projet digital !",
+  "bio_en": "As a web development student, I have had the opportunity to explore a wide range of digital fields, including interface design, UX/UI, cybersecurity, databases, and both front-end and back-end development. I enjoy understanding how technologies work, experimenting with new approaches, and building projects that challenge me to grow both technically and methodologically.\r\nMy goal is to become a versatile developer capable of contributing to every stage of a digital project — from the initial concept to deployment — while delivering modern, reliable, and user‑focused solutions.",
+  "bio_fr": "Étudiant en développement web, j’ai eu l’occasion d’explorer un large éventail de domaines du numérique : conception d’interfaces, UX/UI, cybersécurité, bases de données, développement front-end et back-end. J’aime comprendre comment les technologies fonctionnent, expérimenter de nouvelles approches et créer des projets qui me poussent à progresser techniquement comme méthodologiquement.\r\nMon objectif est de devenir un développeur polyvalent, capable d’intervenir à chaque étape d’un projet digital — de l’idée initiale jusqu’au déploiement — tout en proposant des solutions fiables, modernes et adaptées aux besoins des utilisateurs.\r\n"
+}]

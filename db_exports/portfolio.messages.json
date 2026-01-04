@@ -1,0 +1,34 @@
+[{
+  "_id": {
+    "$oid": "6952a8826ae0b2ae77101dc4"
+  },
+  "name": "Test2",
+  "email": "yarno.chedemail@gmail.com",
+  "subject": "Contact from Test2",
+  "content": "azsdfvv",
+  "read": false,
+  "createdAt": {
+    "$date": "2025-12-29T16:12:50.378Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-29T16:12:50.378Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "695a6bd6269acc82400c53d5"
+  },
+  "name": "Test User",
+  "email": "testuser@gmaoil.com",
+  "subject": "Message de Test User",
+  "content": "this is a test",
+  "read": false,
+  "createdAt": {
+    "$date": "2026-01-04T13:32:06.224Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-04T13:32:06.224Z"
+  },
+  "__v": 0
+}]

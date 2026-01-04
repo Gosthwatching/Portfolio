@@ -1,0 +1,134 @@
+[{
+  "_id": {
+    "$oid": "69529ed6ce4e2a1f1acbe702"
+  },
+  "title": "Snake",
+  "description": "Création du jeu Snake en JavaScript avec du Canvas",
+  "imageUrl": "https://res.cloudinary.com/dsb7v3shr/image/upload/v1767101368/portfolio/projects/1767022780475-905820593.png",
+  "live": "https://yarnochedemail.sites.3wa.io/Sprints/Sprint_Snake/project/index.html",
+  "tags": [
+    "Jeux",
+    "PC"
+  ],
+  "techStack": [
+    "JS",
+    "Canva",
+    "CSS",
+    "HTML"
+  ],
+  "createdAt": {
+    "$date": "2025-12-29T15:31:34.038Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-04T13:40:21.494Z"
+  },
+  "__v": 0,
+  "description_en": "Development of the Snake game in JavaScript using Canvas. The project includes movement handling, collision detection, scoring, and random food generation. It helped me strengthen my understanding of game logic and real‑time graphical rendering.",
+  "description_fr": "Développement du jeu Snake en JavaScript en utilisant le Canvas. Le projet inclut la gestion des déplacements, des collisions, du score et de la génération aléatoire de nourriture. Il m’a permis de renforcer ma compréhension de la logique de jeu et du rendu graphique en temps réel."
+},
+{
+  "_id": {
+    "$oid": "6952aaabce361d2a49608634"
+  },
+  "title": "Restauration fictif",
+  "description": "Création d'un site vitrine pour une chaine de restauration fictif",
+  "imageUrl": "https://res.cloudinary.com/dsb7v3shr/image/upload/v1767101368/portfolio/projects/1767025323449-384254410.jpg",
+  "live": "https://yarnochedemail.sites.3wa.io/Sprints/Sprint/index.html?_c9_id=livepreview1&_c9_host=https://yarnochedemail.ide.3wa.io",
+  "tags": [
+    "Site Vitrine",
+    "Responsive"
+  ],
+  "techStack": [
+    "HTML",
+    "CSS",
+    "SASS"
+  ],
+  "createdAt": {
+    "$date": "2025-12-29T16:22:03.469Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-04T13:39:44.771Z"
+  },
+  "__v": 0,
+  "description_en": "Creation of a complete showcase website for a fictional restaurant chain. The project includes brand presentation, menus, appealing visuals, and a modern structure aligned with current web standards.",
+  "description_fr": "Création d’un site vitrine complet pour une chaîne de restauration fictive. Le projet comprend la présentation de la marque, des menus, des visuels attractifs et une structure moderne adaptée aux standards actuels du web."
+},
+{
+  "_id": {
+    "$oid": "6952ac08ce361d2a4960864b"
+  },
+  "title": "Akinator",
+  "live": "https://yarnochedemail.sites.3wa.io/UE6/PHP/exam/sprint/php_pages/index.php",
+  "tags": [
+    "Jeux",
+    "PC"
+  ],
+  "techStack": [
+    "PHP",
+    "CSS"
+  ],
+  "createdAt": {
+    "$date": "2025-12-29T16:27:52.566Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-04T13:39:09.471Z"
+  },
+  "__v": 0,
+  "description": "Création du jeu Akinator en PHP",
+  "imageUrl": "https://res.cloudinary.com/dsb7v3shr/image/upload/v1767101369/portfolio/projects/1767025818023-960041161.jpg",
+  "description_en": "Development of a simplified version of the Akinator game in PHP. The program uses a question/answer system and conditional logic to progressively narrow down possibilities and guess the character the user has in mind.",
+  "description_fr": "Développement d’une version simplifiée du jeu Akinator en PHP. Le programme repose sur un système de questions/réponses et une logique conditionnelle permettant d’affiner progressivement les choix jusqu’à deviner le personnage pensé par l’utilisateur.\r\n"
+},
+{
+  "_id": {
+    "$oid": "6952ad5bce361d2a49608662"
+  },
+  "title": "Formulaire",
+  "description": "Création d'un formulaire pour un jeu de role ",
+  "imageUrl": "https://res.cloudinary.com/dsb7v3shr/image/upload/v1767101370/portfolio/projects/1767026011099-464988217.jpg",
+  "live": "https://yarnochedemail.sites.3wa.io/UE3%20-%20Outils%20et%20m%C3%A9thodes/RGPD%20-%20CNIL/Jour%202/index.html",
+  "tags": [
+    "PC"
+  ],
+  "techStack": [
+    "HTML",
+    "JavaScript",
+    "CSS"
+  ],
+  "createdAt": {
+    "$date": "2025-12-29T16:33:31.106Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-04T13:38:43.692Z"
+  },
+  "__v": 0,
+  "description_en": "Design of an interactive form for a role‑playing game, allowing players to create and customize their character. The project includes field management, validation rules, and a clean layout to ensure a smooth user experience.",
+  "description_fr": "Conception d’un formulaire interactif destiné à un jeu de rôle, permettant aux joueurs de créer et personnaliser leur personnage. Le projet inclut une gestion des champs, des validations et une mise en page claire pour garantir une expérience fluide.\r\n"
+},
+{
+  "_id": {
+    "$oid": "6954359fdadc0eafe9855844"
+  },
+  "title": "Pixelia",
+  "description": "mini-site pour une communauté, passionnée par l’univers du jeu vidéo rétro.",
+  "imageUrl": "https://res.cloudinary.com/dsb7v3shr/image/upload/v1767126430/portfolio/projects/zrwilnq500lxk4xyc1sp.png",
+  "github": "https://github.com/Gosthwatching/Projet-TailwindCSS-",
+  "live": "https://yarnochedemail.sites.3wa.io/pixelia/index.html",
+  "tags": [
+    "Site",
+    "Responsive"
+  ],
+  "techStack": [
+    "HTML",
+    "TailwindCSS"
+  ],
+  "createdAt": {
+    "$date": "2025-12-30T20:27:11.365Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-04T13:38:02.577Z"
+  },
+  "__v": 0,
+  "description_en": "Development of a mini‑site designed for a community passionate about retro video games. The project features thematic content, simple navigation, and a visual identity inspired by classic consoles. The goal was to create an immersive and accessible community space.\r\n",
+  "description_fr": "Réalisation d’un mini‑site dédié à une communauté passionnée par l’univers du jeu vidéo rétro. Le projet met en avant des contenus thématiques, une navigation simple et une identité visuelle inspirée des consoles classiques. L’objectif était de créer un espace communautaire immersif et accessible."
+}]

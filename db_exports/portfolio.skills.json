@@ -1,0 +1,384 @@
+[{
+  "_id": {
+    "$oid": "695008962b81e3ceb5fa6ca2"
+  },
+  "name": "React",
+  "icon": "SiReact",
+  "category": "frontend",
+  "title": "Frontend",
+  "createdAt": {
+    "$date": "2025-12-27T16:25:58.567Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-03T17:56:24.958Z"
+  },
+  "__v": 0,
+  "order": 21
+},
+{
+  "_id": {
+    "$oid": "695008962b81e3ceb5fa6ca4"
+  },
+  "name": "TypeScript",
+  "icon": "SiTypescript",
+  "category": "frontend",
+  "title": "Frontend",
+  "createdAt": {
+    "$date": "2025-12-27T16:25:58.569Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-03T17:56:24.958Z"
+  },
+  "__v": 0,
+  "order": 20
+},
+{
+  "_id": {
+    "$oid": "695008962b81e3ceb5fa6ca6"
+  },
+  "name": "JavaScript",
+  "icon": "SiJavascript",
+  "category": "frontend",
+  "title": "Frontend",
+  "createdAt": {
+    "$date": "2025-12-27T16:25:58.570Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-03T17:56:24.958Z"
+  },
+  "__v": 0,
+  "order": 19
+},
+{
+  "_id": {
+    "$oid": "695008962b81e3ceb5fa6caa"
+  },
+  "name": "CSS",
+  "icon": "SiCss3",
+  "category": "frontend",
+  "title": "Frontend",
+  "createdAt": {
+    "$date": "2025-12-27T16:25:58.573Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-03T17:56:24.958Z"
+  },
+  "__v": 0,
+  "description": "",
+  "order": 18
+},
+{
+  "_id": {
+    "$oid": "695008962b81e3ceb5fa6cac"
+  },
+  "name": "Tailwind CSS",
+  "icon": "SiTailwindcss",
+  "category": "frontend",
+  "title": "Frontend",
+  "createdAt": {
+    "$date": "2025-12-27T16:25:58.574Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-03T17:56:24.958Z"
+  },
+  "__v": 0,
+  "order": 17
+},
+{
+  "_id": {
+    "$oid": "695008962b81e3ceb5fa6cb0"
+  },
+  "name": "Python",
+  "icon": "SiPython",
+  "category": "backend",
+  "title": "Backend",
+  "createdAt": {
+    "$date": "2025-12-27T16:25:58.577Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-03T17:56:24.958Z"
+  },
+  "__v": 0,
+  "order": 15
+},
+{
+  "_id": {
+    "$oid": "695008962b81e3ceb5fa6cb2"
+  },
+  "name": "FastAPI",
+  "icon": "SiFastapi",
+  "category": "backend",
+  "title": "Backend",
+  "createdAt": {
+    "$date": "2025-12-27T16:25:58.578Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-03T17:56:24.958Z"
+  },
+  "__v": 0,
+  "order": 14
+},
+{
+  "_id": {
+    "$oid": "695008962b81e3ceb5fa6cb4"
+  },
+  "name": "Node.js",
+  "icon": "SiNodedotjs",
+  "category": "backend",
+  "title": "Backend",
+  "createdAt": {
+    "$date": "2025-12-27T16:25:58.579Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-03T17:56:24.958Z"
+  },
+  "__v": 0,
+  "order": 13
+},
+{
+  "_id": {
+    "$oid": "695008962b81e3ceb5fa6cb6"
+  },
+  "name": "Express.js",
+  "icon": "SiExpress",
+  "category": "backend",
+  "title": "Backend",
+  "createdAt": {
+    "$date": "2025-12-27T16:25:58.580Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-03T17:56:24.958Z"
+  },
+  "__v": 0,
+  "order": 5
+},
+{
+  "_id": {
+    "$oid": "695008962b81e3ceb5fa6cb8"
+  },
+  "name": "Java",
+  "icon": "LiaJava",
+  "category": "backend",
+  "title": "Backend",
+  "createdAt": {
+    "$date": "2025-12-27T16:25:58.581Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-03T17:56:24.958Z"
+  },
+  "__v": 0,
+  "description": "",
+  "level": "beginner",
+  "order": 6
+},
+{
+  "_id": {
+    "$oid": "695008962b81e3ceb5fa6cba"
+  },
+  "name": "PostgreSQL",
+  "icon": "SiPostgresql",
+  "category": "database",
+  "title": "Databases",
+  "createdAt": {
+    "$date": "2025-12-27T16:25:58.582Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-03T17:56:24.958Z"
+  },
+  "__v": 0,
+  "description": "",
+  "level": "beginner",
+  "order": 12
+},
+{
+  "_id": {
+    "$oid": "695008962b81e3ceb5fa6cbc"
+  },
+  "name": "MySQL",
+  "icon": "SiMysql",
+  "category": "database",
+  "title": "Databases",
+  "createdAt": {
+    "$date": "2025-12-27T16:25:58.584Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-03T17:56:24.958Z"
+  },
+  "__v": 0,
+  "description": "",
+  "level": "intermediate",
+  "order": 11
+},
+{
+  "_id": {
+    "$oid": "695008962b81e3ceb5fa6cbe"
+  },
+  "name": "MongoDB",
+  "icon": "SiMongodb",
+  "category": "database",
+  "title": "Databases",
+  "createdAt": {
+    "$date": "2025-12-27T16:25:58.585Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-03T17:56:24.958Z"
+  },
+  "__v": 0,
+  "description": "",
+  "level": "expert",
+  "levelPercentage": 50,
+  "order": 7
+},
+{
+  "_id": {
+    "$oid": "6952a2df6ae0b2ae77101d72"
+  },
+  "name": "HTML",
+  "category": "frontend",
+  "description": "",
+  "icon": "SiHtml5",
+  "createdAt": {
+    "$date": "2025-12-29T15:48:47.640Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-03T17:56:24.958Z"
+  },
+  "__v": 0,
+  "order": 4
+},
+{
+  "_id": {
+    "$oid": "695400a0c036fe53313bc028"
+  },
+  "name": "Español",
+  "category": "langue",
+  "description": "A2",
+  "icon": "",
+  "createdAt": {
+    "$date": "2025-12-30T16:41:04.210Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-03T17:56:24.958Z"
+  },
+  "__v": 0,
+  "order": 3
+},
+{
+  "_id": {
+    "$oid": "69541ca8e67a8c1f3a4dcc2d"
+  },
+  "name": "Italiano",
+  "category": "langue",
+  "description": "B2",
+  "icon": "",
+  "createdAt": {
+    "$date": "2025-12-30T18:40:40.724Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-03T17:56:24.958Z"
+  },
+  "__v": 0,
+  "order": 2
+},
+{
+  "_id": {
+    "$oid": "69541cb7e67a8c1f3a4dcc30"
+  },
+  "name": "English",
+  "category": "langue",
+  "description": "B1",
+  "icon": "",
+  "createdAt": {
+    "$date": "2025-12-30T18:40:55.402Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-03T17:56:24.958Z"
+  },
+  "__v": 0,
+  "order": 1
+},
+{
+  "_id": {
+    "$oid": "69541cc3e67a8c1f3a4dcc33"
+  },
+  "name": "Français",
+  "category": "langue",
+  "description": "Native",
+  "icon": "",
+  "createdAt": {
+    "$date": "2025-12-30T18:41:07.047Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-03T17:56:24.958Z"
+  },
+  "__v": 0,
+  "order": 0
+},
+{
+  "_id": {
+    "$oid": "69580da49252cdb9f2bfd59f"
+  },
+  "name": "Figma",
+  "category": "UX/UI",
+  "description": "",
+  "icon": "SiFigma",
+  "createdAt": {
+    "$date": "2026-01-02T18:25:40.152Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-03T17:56:24.958Z"
+  },
+  "__v": 0,
+  "order": 16
+},
+{
+  "_id": {
+    "$oid": "695810498cc16814287fb712"
+  },
+  "name": "Docker",
+  "category": "DevOps ",
+  "description": "",
+  "icon": "SiDocker",
+  "order": 10,
+  "createdAt": {
+    "$date": "2026-01-02T18:36:57.456Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-03T17:56:24.958Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6959563f9c87e3371a528c48"
+  },
+  "name": "Git",
+  "category": "Collaboration",
+  "description": "",
+  "icon": "FaGitAlt",
+  "order": 9,
+  "createdAt": {
+    "$date": "2026-01-03T17:47:43.058Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-03T17:56:24.958Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "695958281093e96651f36e70"
+  },
+  "name": "GitHub",
+  "category": "Collaboration",
+  "description": "",
+  "icon": "FaGithub",
+  "order": 8,
+  "createdAt": {
+    "$date": "2026-01-03T17:55:52.960Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-03T17:56:24.958Z"
+  },
+  "__v": 0
+}]

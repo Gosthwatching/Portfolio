@@ -1,0 +1,48 @@
+[{
+  "_id": {
+    "$oid": "69567a379b80659aa54b1a24"
+  },
+  "school": "Lycée Saint Nicolas",
+  "degree": "Baccalauréat",
+  "field": "Technologie SPE SIN",
+  "startDate": {
+    "$date": "2019-09-02T00:00:00.000Z"
+  },
+  "endDate": {
+    "$date": "2022-06-24T00:00:00.000Z"
+  },
+  "description": "",
+  "createdAt": {
+    "$date": "2026-01-01T13:44:23.174Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-02T18:45:38.115Z"
+  },
+  "__v": 0,
+  "description_en": "SPE Digital Technology and Computer Science",
+  "description_fr": "Technologie SPE Numérique et sciences informatiques (NSI)"
+},
+{
+  "_id": {
+    "$oid": "69567f319b80659aa54b1aad"
+  },
+  "school": "3W Academy",
+  "degree": "Bachelor Développeur Full Stack",
+  "field": "Développement Web",
+  "startDate": {
+    "$date": "2024-09-01T00:00:00.000Z"
+  },
+  "description": "Cours principaux : Programmation web, Gestion de bases de données, Algorithmie, UI/UX, Cybersécurité, Gestion de projet",
+  "createdAt": {
+    "$date": "2026-01-01T14:05:37.036Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-03T17:49:43.076Z"
+  },
+  "__v": 0,
+  "endDate": {
+    "$date": "2027-07-01T00:00:00.000Z"
+  },
+  "description_en": "Main lessons : Web programming, Database management, Algorithms, UI/UX, Cybersecurity, Project management.",
+  "description_fr": "Cours principaux : Programmation web, Gestion de bases de données, Algorithmie, UI/UX, Cybersécurité, Gestion de projet."
+}]

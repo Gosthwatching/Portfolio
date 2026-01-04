@@ -1,0 +1,28 @@
+[{
+  "_id": {
+    "$oid": "69403a201f0dbd4042f0abf7"
+  },
+  "username": "zed",
+  "password_hash": "$2b$10$fnKOLlvNlng9bagOeh/65O10xSy6LVhCkl4rcY9tDcyjD3iUj6mCC",
+  "createdAt": {
+    "$date": "2025-12-15T16:41:04.408Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-27T15:57:53.609Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6953d485fa73de6221d7c609"
+  },
+  "username": "testadmin",
+  "password_hash": "$2b$10$Lj7iBJU1RnxkXEcUa7vIfOu9E8b.aAakv7HVIPC.yifhBskHYYZ1G",
+  "createdAt": {
+    "$date": "2025-12-30T13:32:53.733Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-30T13:38:09.667Z"
+  },
+  "__v": 0
+}]

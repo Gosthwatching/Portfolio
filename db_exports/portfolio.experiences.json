@@ -1,0 +1,46 @@
+[{
+  "_id": {
+    "$oid": "69569ede27bab270e7ea743b"
+  },
+  "company": "3W Academy",
+  "position": "Ambassadeur",
+  "startDate": {
+    "$date": "2024-09-23T00:00:00.000Z"
+  },
+  "endDate": {
+    "$date": "2027-07-21T00:00:00.000Z"
+  },
+  "description": "",
+  "description_fr": "Représentation et promotion de l’école lors\ndes salons de l'éducation, les journées portes\nouvertes et les visites d'écoles.\nDéveloppement compétences personnelles,\ntelles que confiance en soi, communication et\nleadership.",
+  "description_en": "Representing and promoting the school at\neducation fairs, open houses, and school visits.\nDeveloping personal skills, such as self-confidence, communication, and leadership.",
+  "createdAt": {
+    "$date": "2026-01-01T16:20:46.714Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-01T16:20:46.714Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "695728a6b3266ac6eccf4153"
+  },
+  "company": "Infogène",
+  "position": "Stagière - Developpeur Full Stack Stage",
+  "startDate": {
+    "$date": "2025-05-02T00:00:00.000Z"
+  },
+  "endDate": {
+    "$date": "2025-07-02T00:00:00.000Z"
+  },
+  "description": "",
+  "description_fr": "Refonte de pages SharePoint pour Ipsen\nPharma : intégration visuelle, adaptation\nresponsive, développement HTML/CSS/JS\nconforme à la charte graphique. Réalisation\nd’un PowerPoint sur la réutilisation du code.\nMaîtrise de SharePoint Online et Office 365.",
+  "description_en": "Redesign of SharePoint pages for Ipsen Pharma: visual integration, responsive layout, and HTML/CSS/JS development following the brand guidelines. Created a PowerPoint about code reuse. Good knowledge of SharePoint Online and Office 365",
+  "createdAt": {
+    "$date": "2026-01-02T02:08:38.457Z"
+  },
+  "updatedAt": {
+    "$date": "2026-01-02T02:08:38.457Z"
+  },
+  "__v": 0
+}]
